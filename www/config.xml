@@ -6,7 +6,7 @@ versionCode = "2"
 xmlns="http://www.w3.org/ns/widgets"
 xmlns:gap="http://phonegap.com/ns/1.0"
 >
-    <name>Bus tracker Turku</name>
+    <name>Foli Turku Bus</name>
     <description>
         Bus App.
     </description>
