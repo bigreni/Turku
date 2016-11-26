@@ -38,6 +38,7 @@
         };
         AdMob.setOptions(defaultOptions);
         registerAdEvents();
+        AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     }
     // optional, in case respond to events or handle error
     function registerAdEvents() {
