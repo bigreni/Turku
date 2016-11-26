@@ -108,3 +108,14 @@
     //    var autoshow = document.getElementById('autoshow').checked;
     //    AdMob.prepareInterstitial({ adId: admobid.interstitial, autoShow: autoshow });
     //}
+
+
+    function successFunction()
+{
+    
+}
+ 
+function errorFunction(error)
+{
+    
+}
