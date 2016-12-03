@@ -33,7 +33,7 @@
             bgColor: 'black', // color name, or '#RRGGBB'
             // x: integer,      // valid when set position to 0 / POS_XY
             // y: integer,      // valid when set position to 0 / POS_XY
-            isTesting: true, // set to true, to receiving test ad for testing purpose
+            isTesting: false, // set to true, to receiving test ad for testing purpose
             overlap: false
             // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
         };
