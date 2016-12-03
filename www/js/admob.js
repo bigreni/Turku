@@ -8,7 +8,8 @@
     var admobid = {};
     if (/(android)/i.test(navigator.userAgent)) {
         admobid = { // for Android
-            banner: 'ca-app-pub-1683858134373419/6195622280'
+            banner: 'ca-app-pub-1683858134373419/6195622280',
+            interstitial: 'ca-app-pub-1683858134373419/7331801484'
             //banner: 'ca-app-pub-3886850395157773/3411786244'
             //interstitial: 'ca-app-pub-9249695405712287/3301233156'
         };
@@ -32,8 +33,8 @@
             bgColor: 'black', // color name, or '#RRGGBB'
             // x: integer,      // valid when set position to 0 / POS_XY
             // y: integer,      // valid when set position to 0 / POS_XY
-            isTesting: false, // set to true, to receiving test ad for testing purpose
-            overlap: true
+            isTesting: true, // set to true, to receiving test ad for testing purpose
+            overlap: false
             // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
         };
         AdMob.setOptions(defaultOptions);
@@ -109,8 +110,14 @@
     //    AdMob.prepareInterstitial({ adId: admobid.interstitial, autoShow: autoshow });
     //}
 
+function loadInterstitial() {
+    AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: true, autoShow: true });
+    window.location.href = "Planner.html";
+    return true;
+}
 
-    function successFunction()
+
+function successFunction()
 {
     
 }
