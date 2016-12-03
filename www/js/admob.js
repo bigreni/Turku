@@ -111,7 +111,7 @@
     //}
 
 function loadInterstitial() {
-    AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: true, autoShow: true });
+    AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
     window.location.href = "Planner.html";
     return true;
 }
