@@ -1,8 +1,8 @@
     function onLoad() {
         if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
-            document.addEventListener('deviceready', initApp, false);
+            document.addEventListener('deviceready', checkFirstUse, false);
         } else {
-            initApp();
+            checkFirstUse();
         }
     }
     var admobid = {};
@@ -19,7 +19,9 @@
         if (!AdMob) { alert('admob plugin not ready'); return; }
         initAd();
         // display the banner at startup
-        createSelectedBanner();
+        //createSelectedBanner();
+        //display interstitial at startup
+        loadInterstitial();
     }
     function initAd() {
         var defaultOptions = {
@@ -112,8 +114,8 @@
 
 function loadInterstitial() {
     AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
-    window.location.href = "Planner.html";
-    return true;
+    //window.location.href = "Planner.html";
+    //return true;
 }
 
 
@@ -125,4 +127,35 @@ function successFunction()
 function errorFunction(error)
 {
     
+}
+
+   function checkFirstUse()
+    {
+        var p = window.localStorage.getItem("firstuse");
+        if (p == null) 
+        {
+//Finnish
+            navigator.notification.alert('To see the phone menu, please swipe up/down from the bottom/top of the screen.', initApp, 'Thank you for downloading', 'OK');
+            window.localStorage.setItem("firstuse", 1);
+        }
+        else
+        {
+            askRating();
+            initApp();
+        }
+    }
+
+function askRating()
+{
+  AppRate.preferences = {
+  openStoreInApp: true,
+  useLanguage:  'fi',
+  usesUntilPrompt: 5,
+  promptAgainForEachNewVersion: false,
+  storeAppURL: {
+                android: 'market://details?id=com.turku.withads'
+               }
+};
+ 
+AppRate.promptForRating(false);
 }
