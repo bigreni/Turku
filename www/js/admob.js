@@ -61,11 +61,12 @@
 
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) {
-            alert('error: ' + data.error +
-                    ', reason: ' + data.reason +
-                    ', adNetwork:' + data.adNetwork +
-                    ', adType:' + data.adType +
-                    ', adEvent:' + data.adEvent); // adType: 'banner' or 'interstitial'
+            //alert('error: ' + data.error +
+            //        ', reason: ' + data.reason +
+            //        ', adNetwork:' + data.adNetwork +
+            //        ', adType:' + data.adType +
+            //        ', adEvent:' + data.adEvent); // adType: 'banner' or 'interstitial'
+            createSelectedBanner();
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
