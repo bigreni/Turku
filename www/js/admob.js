@@ -66,7 +66,7 @@
             //        ', adNetwork:' + data.adNetwork +
             //        ', adType:' + data.adType +
             //        ', adEvent:' + data.adEvent); // adType: 'banner' or 'interstitial'
-            createSelectedBanner();
+            //createSelectedBanner();
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
@@ -132,12 +132,19 @@ function errorFunction(error)
 
    function checkFirstUse()
     {
-        var p = window.localStorage.getItem("firstuse");
-        if (p == null) 
+        var currentVersion = 5;
+        var p = window.localStorage.getItem("currentVersion");
+        if (p == null) //App downloaded first time
         {
 //Finnish
             navigator.notification.alert('To see the phone menu, please swipe up/down from the bottom/top of the screen.', initApp, 'Thank you for downloading', 'OK');
-            window.localStorage.setItem("firstuse", 1);
+            window.localStorage.setItem("currentVersion", currentVersion);
+        }
+        else if(p < currentVersion) //if app upgraded
+        {
+//Finnish
+            navigator.notification.alert('To see the phone menu, please swipe up/down from the bottom/top of the screen.', initApp, 'Thank you for updating', 'OK');
+            window.localStorage.setItem("currentVersion", currentVersion);            
         }
         else
         {
@@ -151,8 +158,8 @@ function askRating()
   AppRate.preferences = {
   openStoreInApp: true,
   useLanguage:  'fi',
-  usesUntilPrompt: 5,
-  promptAgainForEachNewVersion: false,
+  usesUntilPrompt: 10,
+  promptAgainForEachNewVersion: true,
   storeAppURL: {
                 android: 'market://details?id=com.turku.withads'
                }
