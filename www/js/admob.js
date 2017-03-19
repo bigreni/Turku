@@ -10,13 +10,11 @@
         admobid = { // for Android
             banner: 'ca-app-pub-1683858134373419/6195622280',
             interstitial: 'ca-app-pub-1683858134373419/7331801484'
-            //banner: 'ca-app-pub-3886850395157773/3411786244'
-            //interstitial: 'ca-app-pub-9249695405712287/3301233156'
         };
     }
 
     function initApp() {
-        if (!AdMob) { alert('admob plugin not ready'); return; }
+        if (!AdMob) { return; }
         initAd();
         // display the banner at startup
         //createSelectedBanner();
@@ -60,18 +58,17 @@
         */
 
         // new events, with variable to differentiate: adNetwork, adType, adEvent
-        document.addEventListener('onAdFailLoad', function (data) {
-            //alert('error: ' + data.error +
-            //        ', reason: ' + data.reason +
-            //        ', adNetwork:' + data.adNetwork +
-            //        ', adType:' + data.adType +
-            //        ', adEvent:' + data.adEvent); // adType: 'banner' or 'interstitial'
-            //createSelectedBanner();
+        document.addEventListener('onAdFailLoad', function (data) 
+        {
+            document.getElementById('fullpage').style.visibility = 'visible';
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
         document.addEventListener('onAdLeaveApp', function (data) { });
-        document.addEventListener('onAdDismiss', function (data) { });
+        document.addEventListener('onAdDismiss', function (data) 
+        {
+            document.getElementById('fullpage').style.visibility = 'visible';
+        });
     }
 
     // click button to call following functions
@@ -115,8 +112,6 @@
 
 function loadInterstitial() {
     AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
-    //window.location.href = "Planner.html";
-    //return true;
 }
 
 
@@ -132,25 +127,8 @@ function errorFunction(error)
 
    function checkFirstUse()
     {
-        var currentVersion = 5;
-        var p = window.localStorage.getItem("currentVersion");
-        if (p == null) //App downloaded first time
-        {
-//Finnish
-            navigator.notification.alert('To see the phone menu, please swipe up/down from the bottom/top of the screen.', initApp, 'Thank you for downloading', 'OK');
-            window.localStorage.setItem("currentVersion", currentVersion);
-        }
-        else if(p < currentVersion) //if app upgraded
-        {
-//Finnish
-            navigator.notification.alert('To see the phone menu, please swipe up/down from the bottom/top of the screen.', initApp, 'Thank you for updating', 'OK');
-            window.localStorage.setItem("currentVersion", currentVersion);            
-        }
-        else
-        {
             askRating();
             initApp();
-        }
     }
 
 function askRating()
