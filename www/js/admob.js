@@ -60,6 +60,7 @@
         document.addEventListener('onAdFailLoad', function (data) 
         {
             document.getElementById('fullpage').style.visibility = 'visible';
+            document.getElementById('splashscreen').style.display = 'none';
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
@@ -67,6 +68,7 @@
         document.addEventListener('onAdDismiss', function (data) 
         {
             document.getElementById('fullpage').style.visibility = 'visible';
+            document.getElementById('splashscreen').style.display = 'none';
         });
     }
 
@@ -126,6 +128,8 @@ function errorFunction(error)
 
    function checkFirstUse()
     {
+            //document.getElementById('fullpage').style.visibility = 'visible';
+            //document.getElementById('splashscreen').style.display = 'none';
             askRating();
             initApp();
     }
