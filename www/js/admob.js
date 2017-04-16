@@ -9,9 +9,17 @@
     if (/(android)/i.test(navigator.userAgent)) {
         admobid = { // for Android
             banner: 'ca-app-pub-1683858134373419/6195622280',
-            interstitial: 'ca-app-pub-1683858134373419/7331801484'
+            interstitial: 'ca-app-pub-9249695405712287/2495341951'
         };
-    }
+    } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+    admobid = {
+      banner: 'ca-app-pub-1683858134373419/6195622280', // or DFP format "/6253334/dfp_example_ad"
+      interstitial: 'ca-app-pub-9249695405712287/2689401159'
+    };
+  }
+
+
+
 
     function initApp() {
         if (!AdMob) { return; }
@@ -42,20 +50,6 @@
     }
     // optional, in case respond to events or handle error
     function registerAdEvents() {
-        /* deprecated
-        document.addEventListener('onBannerFailedToReceive', function(data){ alert('error: ' + data.error + ', reason: ' + data.reason); });
-        document.addEventListener('onBannerReceive', function(){});
-        document.addEventListener('onBannerPresent', function(){});
-        document.addEventListener('onBannerLeaveApp', function(){});
-        document.addEventListener('onBannerDismiss', function(){});
-
-        document.addEventListener('onInterstitialFailedToReceive', function(data){ alert('error: ' + data.error + ', reason: ' + data.reason); });
-        document.addEventListener('onInterstitialReceive', function(){});
-        document.addEventListener('onInterstitialPresent', function(){});
-        document.addEventListener('onInterstitialLeaveApp', function(){});
-        document.addEventListener('onInterstitialDismiss', function(){});
-        */
-
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) 
         {
@@ -72,44 +66,9 @@
         });
     }
 
-    // click button to call following functions
-    //function getSelectedAdSize() {
-    //    var i = document.getElementById("adSize").selectedIndex;
-    //    var items = document.getElementById("adSize").options;
-    //    return items[i].value;
-    //}
-    //function getSelectedPosition() {
-    //    var i = document.getElementById("adPosition").selectedIndex;
-    //    var items = document.getElementById("adPosition").options;
-    //    return parseInt(items[i].value);
-    //}
     function createSelectedBanner() {
-        //var overlap = document.getElementById('overlap').checked;
-        //var offsetTopBar = document.getElementById('offsetTopBar').checked;
-        //AdMob.createBanner( {adId:admobid.banner, overlap:overlap, offsetTopBar:offsetTopBar, adSize: getSelectedAdSize(), position:getSelectedPosition()} );
         AdMob.createBanner({adId:admobid.banner});
     }
-    //function createBannerOfGivenSize() {
-    //    var w = document.getElementById('w').value;
-    //    var h = document.getElementById('h').value;
-
-    //    AdMob.createBanner({ adId: admobid.banner,
-    //        adSize: 'CUSTOM', width: w, height: h,
-    //        position: getSelectedPosition()
-    //    });
-    //}
-    //function showBannerAtSelectedPosition() {
-    //    AdMob.showBanner(getSelectedPosition());
-    //}
-    //function showBannerAtGivenXY() {
-    //    var x = document.getElementById('x').value;
-    //    var y = document.getElementById('y').value;
-    //    AdMob.showBannerAtXY(x, y);
-    //}
-    //function prepareInterstitial() {
-    //    var autoshow = document.getElementById('autoshow').checked;
-    //    AdMob.prepareInterstitial({ adId: admobid.interstitial, autoShow: autoshow });
-    //}
 
 function loadInterstitial() {
     AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
@@ -142,9 +101,31 @@ function askRating()
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
   storeAppURL: {
+                ios: '1227310753',
                 android: 'market://details?id=com.turku.withads'
                }
 };
  
 AppRate.promptForRating(false);
+}
+
+
+function showMap()
+{
+    document.getElementById('divPlanner').style.display = 'none';
+    document.getElementById('divMap').style.display = 'block';
+    document.getElementById('divPlanner').style.height = '0vh';
+    document.getElementById('divMap').style.height = '100vh';
+}
+
+function showPlanner()
+{
+    if(document.getElementById('frmPlanner').src == '')
+    {
+        document.getElementById('frmPlanner').src = 'http://beta.digitransit.fi/';
+    }
+    document.getElementById('divPlanner').style.display = 'block';
+    document.getElementById('divMap').style.display = 'none';    
+    document.getElementById('divMap').style.height = '0vh';
+    document.getElementById('divPlanner').style.height = '100vh';
 }

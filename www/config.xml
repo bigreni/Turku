@@ -2,7 +2,7 @@
 <widget 
 id="com.turku.withads" 
 version="1.0.0"
-versionCode = "6" 
+versionCode = "7" 
 xmlns="http://www.w3.org/ns/widgets"
 xmlns:gap="http://phonegap.com/ns/1.0"
 >
@@ -31,6 +31,8 @@ xmlns:gap="http://phonegap.com/ns/1.0"
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <gap:plugin name="cordova-plugin-statusbar" source="npm"/>
     <gap:plugin name="cordova-plugin-device" source="npm" />
     <gap:plugin name="cordova-plugin-device-motion" source="npm"/>
     <gap:plugin name="cordova-plugin-geolocation" source="npm"/>

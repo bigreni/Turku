@@ -44,8 +44,14 @@
     </script>
 	
     <div id="fullpage" data-role="page" style="visibility: hidden;">
+        <div id="divMap">
            <iframe style="width: 100vw; height: 90vh; border: none" src="LiveMap.html" height="240" width="320"></iframe>
-           <a href="Planner.html" class="ui-btn ui-btn-b">Journey Planner</a>
+           <a href="javascript:showPlanner();" class="ui-btn ui-btn-b">Journey Planner</a>
+         </div>
+        <div id="divPlanner" style="display: none;">
+            <iframe id="frmPlanner" style="width: 100vw; height:90vh; border: none" height="240" width="320"></iframe>
+            <a id="lnkMap" href="javascript:showMap();" class="ui-btn ui-btn-b">Live Map</a>   
+        </div>  
 	</div>
   
 </body>
