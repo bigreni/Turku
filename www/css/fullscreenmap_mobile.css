@@ -1,0 +1,59 @@
+@media only screen and (max-width:768px) {
+
+ #HFS #homeLinkHolder {
+	display:none;
+ }
+
+ #HFS #searchBar {
+	right:82px;
+	left:auto;
+	width:200px;
+	line-height:18px;
+ }
+ 
+ #HFS  .map_app.miniApp {
+	top:auto !important;
+ }
+ 
+ #HFS .languageSelect {
+	right:3px;
+	left:auto;
+ }
+ 
+ #HFS .languageSelect.select_fin a.fin, #HFS .languageSelect.select_eng a.eng, #HFS .languageSelect.select_swe a.swe { display:none; }
+ 
+ #HFS #searchBar .searchBarInputHolder { display:block;}
+ 
+ #HFS #searchBar input {
+	width:100%;
+	box-sizing: border-box;
+ }
+
+ #HFS .map_app {
+	width:100%;
+	left:0px !important;
+	right:0px !important;
+	bottom:0px !important;
+	top:63% !important;
+	transition:none;
+ }
+ 
+ #HFS #screenDiv {
+	width:100%;
+	margin:0px;
+ }
+  
+ #infobox_popup { }
+
+ #HIM_showAllButton { position:absolute; left:0px; right:0px; bottom:5px; text-align: center; }
+ 
+ #HFS #Livemap_LineFilterContainer { max-height:none; }
+}
+
+@media only screen and (max-width:450px) {
+
+  body#HFS #searchBar {
+	width:150px;
+ }
+
+}

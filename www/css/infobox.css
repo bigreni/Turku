@@ -1,0 +1,203 @@
+
+/* Map Controls */
+
+.olControlPanZoomBar  {
+	width:56px;
+	height:56px;
+	background:#000;
+}
+
+.olControlPanZoomBar .olButton:nth-child(1)
+{
+	top:0px !important;
+	left:18px !important;
+}
+.olControlPanZoomBar .olButton:nth-child(2)
+{
+	top:18px !important;
+	left:0px !important;
+}
+.olControlPanZoomBar .olButton:nth-child(3)
+{
+	top:18px !important;
+	left:36px !important;
+}
+.olControlPanZoomBar .olButton:nth-child(4)
+{
+	top:36px !important;
+	left:18px !important;
+}
+
+.hfs .olMapViewport img { border:0px none; }
+
+
+
+/* infobox */
+
+
+.hfs .infoboxContent {
+	padding:0px 22px 10px 10px;
+}
+
+.hfs .infoboxContent .linkList {
+	white-space:nowrap;
+}
+
+.hfs .infoboxContent .infoboxHeader {
+	font-weight:bold;
+	text-transform:uppercase;
+	margin-bottom:15px;
+	white-space:nowrap;
+}
+
+.hfs .infoboxContent .infoboxHeader span {
+	vertical-align:middle;
+}
+
+.hfs .infoboxContent .infoboxHeader img {
+	vertical-align:middle;
+	margin-right:5px;
+}
+
+.hfs .infoboxContent .linkList .link {
+	font-size:12px;
+	cursor:pointer;
+	padding-left:5px;
+	color:#685010;
+	line-height:25px;
+}
+
+.hfs .infoboxContent .irow {
+	margin-top:5px;
+}
+
+/* StationInfobox */
+
+#infobox_popup_contentDiv .nextDepList {
+	height:170px;
+	overflow-y:auto;
+	font-size:12px;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol {
+	display:inline-block;
+	position:static;
+}
+
+#infobox_popup_contentDiv .nextDepList .irow.ihead {
+	font-weight:bold;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.name {
+	width:28%;
+	vertical-align:top;
+}
+
+#infobox_popup_contentDiv .nextDepList .list .icol.name {
+	cursor:pointer;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.name img {
+	height:16px;
+	width:16px;
+	margin-right:5px;
+	vertical-align:middle;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.dir {
+	width:43%;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.time {
+	width:24%;
+	padding-left:3px;
+	margin-bottom:1px;
+	line-height: 23px;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.time.hasRealTime {
+	background:#fff;
+	border-radius:0px 0px 0px 5px;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.time .delay {
+	color:#c22a36;
+}
+
+#infobox_popup_contentDiv .nextDepList .icol.time .rtIcon {
+	height:11px;
+	vertical-align:unset;
+	margin-left:2px;
+}
+
+.hfs .stationInfoboxContent {
+	padding:10px;
+	width:300px;
+	height:250px;
+}
+
+.stationInfoboxContent .IBNavi .tab {
+	padding:5px 10px;
+	font-weight:bold;
+	box-shadow:0px 0px 5px #999;
+	position:relative;
+	z-index:0;
+	display:inline-block;
+	color:#000;
+	background:#EAAB00;
+	cursor:pointer;
+	text-transform:uppercase;
+	font-size:14px;
+}
+
+.stationInfoboxContent .IBNavi .tab:last-child {
+	border-radius:0px 15px 0px 0px;
+}
+
+.stationInfoboxContent .IBNavi .tab.active {
+	color:#000;
+	background:#ECECEC;
+}
+
+.stationInfoboxContent .IBContent {
+	line-height:25px;
+	background:#ECECEC;
+	padding:10px 0px;
+	position:relative;
+	z-index:10;
+	font-size:14px;
+}
+
+.stationInfoboxContent .IBContent .clickItem {
+	text-decoration:underline;
+}
+
+.stationInfoboxContent .IBContent b {
+	font-weight:bold;
+	margin-bottom:15px;
+	display:inline-block;
+	text-transform:uppercase;
+	font-size:14px;
+}
+
+.stationInfoboxContent .IBContent a {
+	color:#000;
+	text-decoration:underline;
+	font-size:14px;
+}
+
+.stationInfoboxContent .IBContent a:hover {
+	cursor:pointer;
+	color:#EAAB00;
+}
+
+.stationInfoboxContent .IBContent img.plus {
+	width:15px;
+	height:15px;
+	vertical-align: middle;
+	margin-left:10px;
+}
+
+
+
+

@@ -35,40 +35,37 @@ div#fullpage {
 	padding: 0;
 }
 
-/*a:link {
-    color: #000;
+a:link
+{
+    color: #333;
     text-decoration: none;
 }
 
-a:visited {
-    color: #000;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #000;
-    text-decoration: none;
-}
-
-a:active {
-    color: #000;
-    text-decoration: none;
+/*a.linklocal:link
+{
+    color: #333;    
 }*/
 
-a.langOption{
-    text-decoration: none;
+/* visited link */
+a:visited
+{
+    color: #333;
 }
 
-a.backButton{
-    text-decoration: initial;
+/* mouse over link */
+a:hover
+{
+    color: #333;
 }
 
-h3.proverbTitle {
-    background-color: #ccefdb;
-}
+/* selected link */
+a:active
+{
+    color: #333;
+} 
 
-a.backButton {
-    background-color: #ccefdb;
+h3 {
+margin: 0;
 }
 
 p.title{
@@ -126,4 +123,9 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.scroll{
+    -webkit-overflow-scrolling: touch;
+  	overflow-y: scroll;
 }

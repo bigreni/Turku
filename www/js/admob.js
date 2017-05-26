@@ -14,7 +14,7 @@
     } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
     admobid = {
       banner: 'ca-app-pub-1683858134373419/6195622280', // or DFP format "/6253334/dfp_example_ad"
-      interstitial: 'ca-app-pub-9249695405712287/2689401159'
+      interstitial: 'ca-app-pub-9249695405712287/1663006354'
     };
   }
 
@@ -87,10 +87,11 @@ function errorFunction(error)
 
    function checkFirstUse()
     {
-            //document.getElementById('fullpage').style.visibility = 'visible';
-            //document.getElementById('splashscreen').style.display = 'none';
-            askRating();
-            initApp();
+            $('#simplemenu').sidr();
+            //askRating();
+            //initApp();
+            document.getElementById('fullpage').style.visibility = 'visible';
+            document.getElementById('splashscreen').style.display = 'none';
     }
 
 function askRating()

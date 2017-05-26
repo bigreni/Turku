@@ -799,10 +799,10 @@ var gAppManager = new AppManager();
 <span style="position:relative; z-index:100;">
 Filter
 </span>
-<img class="app_dragbar_button" src="http://reittiopas.foli.fi/hafas-res/img/app_close.png" onclick="gAppManager.hide_app_content('livefahrplan');" id="app_livefahrplan_hide" title="ausblenden" />
-<img class="app_dragbar_button" src="http://reittiopas.foli.fi/hafas-res/img/app_open.png" style="display:none;" onclick="gAppManager.show_app_content('livefahrplan');"  id="app_livefahrplan_show" title="anzeigen" />
+<img class="app_dragbar_button" src="http://reittiopas.foli.fi/hafas-res/img/app_close.png" style="display:none;" onclick="gAppManager.hide_app_content('livefahrplan');" id="app_livefahrplan_hide" title="ausblenden" />
+<img class="app_dragbar_button" src="http://reittiopas.foli.fi/hafas-res/img/app_open.png" onclick="gAppManager.show_app_content('livefahrplan');"  id="app_livefahrplan_show" title="anzeigen" />
 </div>
-<div class="app_content" id="app_livefahrplan_content" >
+<div class="app_content" id="app_livefahrplan_content" style="display: none;">
 <script type="text/javascript" src="http://reittiopas.foli.fi/hafas-res/js/jsmap/PoiViewer.js?guiV=1.5.27&"> </script>
 <script type="text/javascript" src="http://reittiopas.foli.fi/hafas-res/js/gui/map_poi_types.js?guiV=1.5.27&"> </script>
 <script type="text/javascript">
@@ -835,8 +835,8 @@ Hafas.Texts.Livemap["destination"] = "";
 Hafas.Texts.Livemap["viewExternalStboard"] = "";
 Hafas.Texts.Livemap["errorUpdateTrainPosition"] = "an error has occured while retrieving vehicle positions";
 </script>
-<script type="text/javascript" src="http://reittiopas.foli.fi/hafas-res/js/livemap/OL/hafas_livemap.js??guiV=1.5.27&"></script>
-<script type="text/javascript" src="http://reittiopas.foli.fi/hafas-res/js/livemap/OL/hafas_livemap_overlay.js??guiV=1.5.27&"></script>
+<script type="text/javascript" src="js/hafas_livemap.js??guiV=1.5.27&"></script>
+<script type="text/javascript" src="js/hafas_livemap_overlay.js??guiV=1.5.27&"></script>
 <canvas style="display:none;" width="1" height="1" id="livemap_canvas">
 </canvas>
 <div style="display:none;" id="timeoutHintDiv">
