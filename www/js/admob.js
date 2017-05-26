@@ -88,8 +88,8 @@ function errorFunction(error)
    function checkFirstUse()
     {
             $('#simplemenu').sidr();
-            askRating();
             initApp();
+            askRating();
             //document.getElementById('fullpage').style.visibility = 'visible';
             //document.getElementById('splashscreen').style.display = 'none';
     }
