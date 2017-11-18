@@ -53,7 +53,6 @@
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) 
         {
-            document.getElementById('fullpage').style.visibility = 'visible';
             document.getElementById('splashscreen').style.display = 'none';
         });
         document.addEventListener('onAdLoaded', function (data) { });
@@ -61,7 +60,6 @@
         document.addEventListener('onAdLeaveApp', function (data) { });
         document.addEventListener('onAdDismiss', function (data) 
         {
-            document.getElementById('fullpage').style.visibility = 'visible';
             document.getElementById('splashscreen').style.display = 'none';
         });
     }
@@ -74,23 +72,11 @@ function loadInterstitial() {
     AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
 }
 
-
-function successFunction()
-{
-    
-}
- 
-function errorFunction(error)
-{
-    
-}
-
    function checkFirstUse()
     {
             $('#simplemenu').sidr();
             initApp();
             askRating();
-            //document.getElementById('fullpage').style.visibility = 'visible';
             //document.getElementById('splashscreen').style.display = 'none';
     }
 

@@ -31,7 +31,7 @@
 
 #screenDiv		{ position:relative; }
 
-.map_app		{ position:absolute; width:100vw; z-index:100; background:transparant; transition:opacity 0.8s; opacity:1; }
+.map_app		{ position:absolute; width:250px; z-index:100; background:transparant; transition:opacity 0.8s; opacity:1; }
 .map_app .dragbar		{ text-align: left; cursor:move; margin-bottom:5px; padding-right:55px; }
 .map_app .dragbar span	{
 	display:inline-block;
