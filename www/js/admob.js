@@ -1,4 +1,4 @@
-    function onLoad() {
+     function onLoad() {
         if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
             document.addEventListener('deviceready', checkFirstUse, false);
         } else {
@@ -6,79 +6,62 @@
         }
     }
 
-    var admobid = {};
-    if (/(android)/i.test(navigator.userAgent)) {
-        admobid = { // for Android
-            banner: 'ca-app-pub-1683858134373419/6195622280',
-            interstitial: 'ca-app-pub-9249695405712287/2495341951'
-        };
-    } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+  var admobid = {};
+  if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
     admobid = {
       banner: 'ca-app-pub-1683858134373419/6195622280', // or DFP format "/6253334/dfp_example_ad"
-      interstitial: 'ca-app-pub-9249695405712287/1663006354'
+      interstitial: 'ca-app-pub-9249695405712287/2495341951'
+    };
+  } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+    admobid = {
+      banner: 'ca-app-pub-1683858134373419/7790106682', // or DFP format "/6253334/dfp_example_ad"
+      interstitial: 'ca-app-pub-9249695405712287/8955912090'
     };
   }
- 
 
-  function initApp() {
-        if (!AdMob) { return; }
+    function initApp() {
+        if (!AdMob) { alert('admob plugin not ready'); return; }
         initAd();
-        // display the banner at startup
-        //createSelectedBanner();
         //display interstitial at startup
         loadInterstitial();
     }
-
     function initAd() {
         var defaultOptions = {
-            // bannerId: admobid.banner,
-            // interstitialId: admobid.interstitial,
-            // adSize: 'SMART_BANNER',
-            // width: integer, // valid when set adSize 'CUSTOM'
-            // height: integer, // valid when set adSize 'CUSTOM'
             position: AdMob.AD_POSITION.BOTTOM_CENTER,
-            // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
             bgColor: 'black', // color name, or '#RRGGBB'
-            // x: integer,      // valid when set position to 0 / POS_XY
-            // y: integer,      // valid when set position to 0 / POS_XY
-            isTesting: false, // set to true, to receiving test ad for testing purpose
-            overlap: false
-            // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+            isTesting: false // set to true, to receiving test ad for testing purpose
         };
         AdMob.setOptions(defaultOptions);
         registerAdEvents();
     }
-
     // optional, in case respond to events or handle error
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
-        document.addEventListener('onAdFailLoad', function (data) 
-        {
-            document.getElementById('splashscreen').style.display = 'none';
+        document.addEventListener('onAdFailLoad', function (data) {
+            document.getElementById('screen').style.display = 'none';     
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
         document.addEventListener('onAdLeaveApp', function (data) { });
-        document.addEventListener('onAdDismiss', function (data) 
-        {
-            document.getElementById('splashscreen').style.display = 'none';
+        document.addEventListener('onAdDismiss', function (data) { 
+            document.getElementById('screen').style.display = 'none';     
         });
     }
 
     function createSelectedBanner() {
-        AdMob.createBanner({adId:admobid.banner});
+          AdMob.createBanner({adId:admobid.banner});
     }
 
-function loadInterstitial() {
-    AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: true, autoShow: true });
-}
+    function loadInterstitial() {
+        AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+    }
 
    function checkFirstUse()
     {
-            $('#simplemenu').sidr();
-            initApp();
-            askRating();
-            //document.getElementById('splashscreen').style.display = 'none';
+        $('#simplemenu').sidr();
+        initApp();
+        askRating();
+        //document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()

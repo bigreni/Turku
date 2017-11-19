@@ -31,16 +31,16 @@
 <body>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/admob.js"></script>
-    <div id="splashscreen" class="splashscreen" style="display: none"></div>
+    <div id="screen" class="splashscreen" style="display: none"></div>
     <script>
         // Show the splash screen with a loading message
         // Handler to hide the message when the loading stops
         window.onload = function () {
             onLoad();
-            document.getElementById("splashscreen").style.display = 'none';
+            document.getElementById("screen").style.display = 'none';
         };
-        document.getElementById("splashscreen").innerHTML = 'Loading the map. Thank you for your patience.';
-        document.getElementById("splashscreen").style.display = 'block';
+        document.getElementById("screen").innerHTML = 'Loading the map. Thank you for your patience.';
+        document.getElementById("screen").style.display = 'block';
     </script>
 	
     <div id="fullpage" data-role="page">
