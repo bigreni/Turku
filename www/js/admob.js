@@ -104,42 +104,71 @@ function showPlanner()
 
 function checkPermissions()
 {
- var permissions = cordova.plugins.permissions;
- var list = [
-  permissions.CAMERA,
-  permissions.ACCESS_COARSE_LOCATION
-];
-
-permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, function( status ){
-  if ( status.hasPermission ) {
-    alert("Yes :D ");
-  }
-  else {
-    alert("No :( ");
-    permissions.requestPermission(permissions.ACCESS_FINE_LOCATION,
-      function(status) {
-          alert('here');
-        if( !status.hasPermission ) error();
-      },
-      error);
-  }
-});
-
-
-
-function error() {
-  alert('Location services is not enabled.');
+    cordova.plugins.diagnostic.getLocationAuthorizationStatus(function (status) {
+        switch (status) {
+            case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+                cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+                    alert('1');
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                break;
+            case cordova.plugins.diagnostic.permissionStatus.DENIED:
+                cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+                    alert('1');
+                }, function (error) {
+                    console.error(error);
+                });
+                break;
+            case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+                console.log("Permission permanently denied");
+                break;
+        }
+    }, function (error) {
+        console.error(error);
+    });
 }
 
-function success( status ) {
-    alert(status);
-  if( !status.hasPermission ) {
-    permissions.requestPermission("android.permission.ACCESS_FINE_LOCATION",
-      function(status) {
-          alert('here');
-        if( !status.hasPermission ) error();
-      },
-      error);
-    }
-   }
-}
+//function checkPermissions()
+//{
+// var permissions = cordova.plugins.permissions;
+// var list = [
+//  permissions.CAMERA,
+//  permissions.ACCESS_COARSE_LOCATION
+//];
+
+//permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, function( status ){
+//  if ( status.hasPermission ) {
+//    alert("Yes :D ");
+//  }
+//  else {
+//    alert("No :( ");
+//    permissions.requestPermission(permissions.ACCESS_FINE_LOCATION,
+//      function(status) {
+//          alert('here');
+//        if( !status.hasPermission ) error();
+//      },
+//      error);
+//  }
+//});
+
+
+
+//function error() {
+//  alert('Location services is not enabled.');
+//}
+
+//function success( status ) {
+//    alert(status);
+//  if( !status.hasPermission ) {
+//    permissions.requestPermission("android.permission.ACCESS_FINE_LOCATION",
+//      function(status) {
+//          alert('here');
+//        if( !status.hasPermission ) error();
+//      },
+//      error);
+//    }
+//   }
+//}
