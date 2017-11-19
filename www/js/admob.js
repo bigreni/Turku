@@ -59,9 +59,10 @@
    function checkFirstUse()
     {
         $('#simplemenu').sidr();
-        initApp();
-        askRating();
-        //document.getElementById('screen').style.display = 'none';     
+        //initApp();
+        //askRating();
+        checkPermissions();
+        document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()
@@ -99,4 +100,32 @@ function showPlanner()
     document.getElementById('divMap').style.display = 'none';    
     document.getElementById('divMap').style.height = '0vh';
     document.getElementById('divPlanner').style.height = '100vh';
+}
+
+var permissions = cordova.plugins.permissions;
+
+function checkPermissions()
+{
+ var list = [
+  permissions.ACCESS_FINE_LOCATION,
+  permissions.ACCESS_COARSE_LOCATION
+];
+
+permissions.hasPermission(list, callback, null);
+
+function error() {
+  console.warn('Location services is not enabled.');
+}
+
+function success( status ) {
+  if( !status.hasPermission ) {
+  
+    permissions.requestPermissions(
+      list,
+      function(status) {
+        if( !status.hasPermission ) error();
+      },
+      error);
+    }
+   }
 }
