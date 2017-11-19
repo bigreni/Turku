@@ -119,7 +119,7 @@ function error() {
 function success( status ) {
     alert(status);
   if( !status.hasPermission ) {
-    permissions.requestPermissions(permissions.ACCESS_FINE_LOCATION,
+    permissions.requestPermission(permissions.ACCESS_FINE_LOCATION,
       function(status) {
           alert('here');
         if( !status.hasPermission ) error();
