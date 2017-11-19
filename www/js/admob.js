@@ -102,19 +102,18 @@ function showPlanner()
     document.getElementById('divPlanner').style.height = '100vh';
 }
 
-var permissions = cordova.plugins.permissions;
-
 function checkPermissions()
 {
+ var permissions = cordova.plugins.permissions;
  var list = [
   permissions.ACCESS_FINE_LOCATION,
   permissions.ACCESS_COARSE_LOCATION
 ];
 
-permissions.hasPermission(list, callback, null);
+permissions.hasPermission(list, success, error);
 
 function error() {
-  console.warn('Location services is not enabled.');
+  alert('Location services is not enabled.');
 }
 
 function success( status ) {
