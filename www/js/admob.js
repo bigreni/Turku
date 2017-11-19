@@ -110,13 +110,14 @@ function checkPermissions()
   permissions.ACCESS_COARSE_LOCATION
 ];
 
-permissions.hasPermission(list, success, error);
+permissions.hasPermission(list, success, null);
 
 function error() {
   alert('Location services is not enabled.');
 }
 
 function success( status ) {
+    alert('here');
   if( !status.hasPermission ) {
   
     permissions.requestPermissions(
