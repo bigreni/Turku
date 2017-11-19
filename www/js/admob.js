@@ -117,7 +117,7 @@ function error() {
 }
 
 function success( status ) {
-    alert('here');
+    alert(status);
   if( !status.hasPermission ) {
   
     permissions.requestPermissions(
