@@ -4,13 +4,13 @@
 <meta charset="utf-8" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-<!-- Include the jQuery library -->
-<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/jquery.sidr.dark.min.css">
-<script src="js/jquery.sidr.min.js"></script>
-<title>Bustracker Turku</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/jquery.sidr.dark.min.css">
+    <script src="js/jquery.sidr.min.js"></script>
         <style>
+            /* Hide all the app pages until jQuery Mobile inits to
+               avoid the Flash of Unstyled Content */
             .splashscreen {
                 width: 100%;
                 height: 100%;
@@ -30,37 +30,33 @@
 <body>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/admob.js"></script>
-    <div id="screen" class="splashscreen" style="display: none"></div>
-    <script>
-        // Show the splash screen with a loading message
-        // Handler to hide the message when the loading stops
-        window.onload = function () {
-            onLoad();
-            document.getElementById("screen").style.display = 'none';
-        };
-        document.getElementById("screen").innerHTML = 'Loading the map. Thank you for your patience.';
-        document.getElementById("screen").style.display = 'block';
-    </script>
-	
-    <div id="fullpage" data-role="page">
-        <div data-role="content">
-            <h3><a id="simplemenu" href="#sidr" style="font-size: xx-large; background-color: #cac8c8; padding: 5px">&#9776;</a>
-               Menu</h3>
+<script type="text/javascript" src="js/index.js"></script>
+        <div id="screen" class="splashscreen" style="display: none"></div>
+        <script>
+            // Show the splash screen with a loading message
+            // Handler to hide the message when the loading stops
+            window.onload = function () {
+                onLoad();
+                //document.getElementById("screen").style.display = 'none';
+            };
+            document.getElementById("screen").innerHTML = 'Loading the app. Thank you for your patience.';
+            document.getElementById("screen").style.display = 'block';
+        </script>        
+	    <div id="fullpage" data-role="page">
+            <h3><a id="simplemenu" href="#sidr" style="font-size: xx-large; background-color: #007ac9; padding: 5px">&#9776;</a>Foli</h3>
             <div id="sidr">
               <ul>
+                <li><a href="javascript:showPlanner();" >Planner / Reittiopas</a></li>
                 <li><a href="javascript:showMap();" >Live Map</a></li>
-                <li><a href="javascript:showPlanner();" >Planner/Reittiopas</a></li>
               </ul>
             </div>
+            <div id="divMap" style="display: none;">
+               <iframe id="frmMap" style="width: 100vw; height:92vh; border: none" height="240" width="320"></iframe>
+            </div>
+            <div id="divPlanner" style="height: 92vh">
+                <iframe id="frmPlanner" style="width: 100vw; height:92vh; border: none" src="http://beta.digitransit.fi/" height="240" width="320"></iframe>
+            </div>
+        </div>
 
-         <div id="divMap" class="scroll">
-           <iframe style="width: 100vw; height: 92vh; border: none" src="LiveMap.html" height="240" width="320"></iframe>
-         </div>
-        <div id="divPlanner" class="scroll" style="display: none;">
-            <iframe id="frmPlanner" style="width: 100vw; height:92vh; border: none" height="240" width="320"></iframe>
-        </div>  
-	</div>
-</div>
-  
 </body>
 </html>
