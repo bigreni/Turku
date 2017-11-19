@@ -106,7 +106,7 @@ function checkPermissions()
 {
  var permissions = cordova.plugins.permissions;
  var list = [
-  permissions.ACCESS_FINE_LOCATION,
+  permissions.CAMERA,
   permissions.ACCESS_COARSE_LOCATION
 ];
 
