@@ -102,15 +102,18 @@ function showPlanner()
     document.getElementById('divPlanner').style.height = '100vh';
 }
 
+ var permissions = cordova.plugins.permissions;
+
 function checkPermissions()
 {
- var permissions = cordova.plugins.permissions;
  var list = [
   permissions.CAMERA,
   permissions.ACCESS_COARSE_LOCATION
 ];
 
 permissions.hasPermission(list, success, null);
+
+}
 
 function error() {
   alert('Location services is not enabled.');
@@ -119,13 +122,13 @@ function error() {
 function success( status ) {
     alert(status);
   if( !status.hasPermission ) {
-  
-    permissions.requestPermissions(
+
+      permissions.requestPermissions(
       list,
-      function(status) {
-        if( !status.hasPermission ) error();
+      function (status) {
+          alert('here');
+          if (!status.hasPermission) error();
       },
       error);
     }
-   }
 }
