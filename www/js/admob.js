@@ -5,6 +5,7 @@
             checkFirstUse();
         }
     }
+
     var admobid = {};
     if (/(android)/i.test(navigator.userAgent)) {
         admobid = { // for Android
@@ -17,11 +18,9 @@
       interstitial: 'ca-app-pub-9249695405712287/1663006354'
     };
   }
+ 
 
-
-
-
-    function initApp() {
+  function initApp() {
         if (!AdMob) { return; }
         initAd();
         // display the banner at startup
@@ -29,6 +28,7 @@
         //display interstitial at startup
         loadInterstitial();
     }
+
     function initAd() {
         var defaultOptions = {
             // bannerId: admobid.banner,
@@ -48,6 +48,7 @@
         AdMob.setOptions(defaultOptions);
         registerAdEvents();
     }
+
     // optional, in case respond to events or handle error
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
@@ -69,7 +70,7 @@
     }
 
 function loadInterstitial() {
-    AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+    AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: true, autoShow: true });
 }
 
    function checkFirstUse()
