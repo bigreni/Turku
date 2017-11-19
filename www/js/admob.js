@@ -117,13 +117,12 @@ function checkPermissions()
                 break;
             case cordova.plugins.diagnostic.permissionStatus.DENIED:
                 cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
-                    alert('1');
+                    alert('2');
                 }, function (error) {
                     console.error(error);
                 });
                 break;
             case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-                console.log("Permission permanently denied");
                 break;
         }
     }, function (error) {
