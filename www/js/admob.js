@@ -59,9 +59,9 @@
    function checkFirstUse()
     {
         $('#simplemenu').sidr();
+        checkPermissions();
         initApp();
         askRating();
-        checkPermissions();
         //document.getElementById('screen').style.display = 'none';     
     }
 
