@@ -95,6 +95,7 @@ function showPlanner()
     if(document.getElementById('frmPlanner').src == '')
     {
         document.getElementById('frmPlanner').src = 'http://beta.digitransit.fi/';
+        document.getElementById('frmPlanner').setAttribute('allow', 'geolocation *;');
     }
     document.getElementById('divPlanner').style.display = 'block';
     document.getElementById('divMap').style.display = 'none';    
@@ -133,45 +134,3 @@ function checkPermissions()
         console.error(error);
     });
 }
-
-//function checkPermissions()
-//{
-// var permissions = cordova.plugins.permissions;
-// var list = [
-//  permissions.CAMERA,
-//  permissions.ACCESS_COARSE_LOCATION
-//];
-
-//permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, function( status ){
-//  if ( status.hasPermission ) {
-//    alert("Yes :D ");
-//  }
-//  else {
-//    alert("No :( ");
-//    permissions.requestPermission(permissions.ACCESS_FINE_LOCATION,
-//      function(status) {
-//          alert('here');
-//        if( !status.hasPermission ) error();
-//      },
-//      error);
-//  }
-//});
-
-
-
-//function error() {
-//  alert('Location services is not enabled.');
-//}
-
-//function success( status ) {
-//    alert(status);
-//  if( !status.hasPermission ) {
-//    permissions.requestPermission("android.permission.ACCESS_FINE_LOCATION",
-//      function(status) {
-//          alert('here');
-//        if( !status.hasPermission ) error();
-//      },
-//      error);
-//    }
-//   }
-//}
