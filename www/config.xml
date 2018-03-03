@@ -40,6 +40,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <gap:plugin name="cordova-plugin-geolocation" source="npm"/>
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     <gap:plugin name="cordova-plugin-apprate" source="npm"/>
+    <gap:plugin name="cordova-plugin-google-analytics" source="npm"/>
     <gap:plugin name="cordova.plugins.diagnostic" source="npm" />
     <gap:config-file platform="android" parent="/manifest" mode="add">
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>

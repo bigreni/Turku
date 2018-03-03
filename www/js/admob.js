@@ -60,6 +60,9 @@
     {
         $('#simplemenu').sidr();
         checkPermissions();
+        window.ga.startTrackerWithId('UA-88579601-2', 1, function(msg) {
+            window.ga.trackView('Home');
+        });
         initApp();
         askRating();
         //document.getElementById('screen').style.display = 'none';     
@@ -88,6 +91,7 @@ function showMap()
     document.getElementById('divMap').style.display = 'block';
     document.getElementById('divPlanner').style.height = '0vh';
     document.getElementById('divMap').style.height = '100vh';
+    window.ga.trackView('Map');
 }
 
 function showPlanner()
@@ -101,6 +105,7 @@ function showPlanner()
     document.getElementById('divMap').style.display = 'none';    
     document.getElementById('divMap').style.height = '0vh';
     document.getElementById('divPlanner').style.height = '100vh';
+    window.ga.trackView('Planner');
 }
 
 function checkPermissions()
