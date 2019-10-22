@@ -56,6 +56,7 @@
 
     function loadInterstitial() {
         //AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
+        document.getElementById('screen').style.display = 'none';
     }
 
    function checkFirstUse()

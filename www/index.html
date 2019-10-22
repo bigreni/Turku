@@ -30,8 +30,13 @@
 </head>
 <body>
 <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/admob.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        var cachebuster = Math.round(new Date().getTime() / 1000);
+        document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/turku/admob.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/turku/index.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        //document.write('<script type="text/javascript" src="js/admob.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        //document.write('<script type="text/javascript" src="js/index.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+    </script>
         <div id="screen" class="splashscreen" style="display: none"></div>
         <script>
             // Show the splash screen with a loading message
