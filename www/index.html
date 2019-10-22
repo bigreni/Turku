@@ -4,7 +4,8 @@
 <meta charset="utf-8" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/jquery.sidr.dark.min.css">
     <script src="js/jquery.sidr.min.js"></script>
@@ -21,7 +22,7 @@
                 left: 0;
                 right: 0;
                 z-index:1001;
-                background: lightgrey;
+                background: url(https://s3.us-east-2.amazonaws.com/bigreni.com/img/status.gif) no-repeat center center;
                 text-shadow: none;
                 color: black;
             }
@@ -39,24 +40,26 @@
                 onLoad();
                 //document.getElementById("screen").style.display = 'none';
             };
-            document.getElementById("screen").innerHTML = 'Loading the app. Thank you for your patience.';
+            //document.getElementById("screen").innerHTML = 'Loading the app. Thank you for your patience.';
             document.getElementById("screen").style.display = 'block';
         </script>        
 	    <div id="fullpage" data-role="page">
-            <h3><a id="simplemenu" href="#sidr" style="font-size: xx-large; background-color: #d9a800; padding: 5px">&#9776;</a>Foli</h3>
-            <div id="sidr">
-              <ul>
-                <li><a href="javascript:showPlanner();" >Planner / Reittiopas</a></li>
-                <li><a href="javascript:showMap();" >Live Map</a></li>
-              </ul>
-            </div>
             <div id="divMap" style="display: none;">
                <iframe id="frmMap" style="width: 100vw; height:92vh; border: none" height="240" width="320"></iframe>
             </div>
             <div id="divPlanner" style="height: 92vh">
-                <iframe id="frmPlanner" style="width: 100vw; height:92vh; border: none" src="http://beta.digitransit.fi/" height="240" width="320" allow="geolocation *;"></iframe>
+                <iframe id="frmPlanner" style="width: 100vw; height:92vh; border: none" src="https://beta.digitransit.fi/" height="240" width="320" allow="geolocation *;"></iframe>
             </div>
         </div>
+    <div id="footer">
+      <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+      <div class="row" id="bottomNav">
+        <div class="col-xs-6 text-center"><a href="javascript:showPlanner();"><i class="glyphicon glyphicon-random"></i><br>Planner/Reittiopas</a></div>
+        <div class="col-xs-6 text-center"><a href="javascript:showMap();"><i class="glyphicon glyphicon glyphicon-time"></i><br>Live Map</a></div>
+      </div>
+      </div>
+    </div>
 
+        <script type='text/javascript' src="js/bootstrap.min.js"></script>
 </body>
 </html>

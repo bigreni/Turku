@@ -37,7 +37,7 @@ div#fullpage {
 
 a:link
 {
-    color: #333;
+    color: white;
     text-decoration: none;
 }
 
@@ -49,19 +49,19 @@ a:link
 /* visited link */
 a:visited
 {
-    color: #333;
+    color: white;
 }
 
 /* mouse over link */
 a:hover
 {
-    color: #333;
+    color: white;
 }
 
 /* selected link */
 a:active
 {
-    color: #333;
+    color: white;
 } 
 
 h3 {

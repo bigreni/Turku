@@ -70,7 +70,7 @@ function showPlanner()
 {
         if(document.getElementById('frmPlanner').src == '')
     {
-        document.getElementById('frmPlanner').src = 'http://beta.digitransit.fi/';
+        document.getElementById('frmPlanner').src = 'https://beta.digitransit.fi/';
     }
     document.getElementById('divPlanner').style.display = 'block';
     document.getElementById('divMap').style.display = 'none';    
