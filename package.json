@@ -1,0 +1,37 @@
+{
+  "devDependencies": {
+    "cordova-admobsdk": "^8.13.0",
+    "cordova-android": "^10.1.2",
+    "cordova-plugin-admobpro": "^8.13.1",
+    "cordova-plugin-apprate": "^1.7.2",
+    "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-extension": "^1.6.0",
+    "cordova-plugin-geolocation": "^4.1.0",
+    "cordova-plugin-idfa": "^2.1.0",
+    "cordova-plugin-inappbrowser": "^5.0.0",
+    "cordova-plugin-nativestorage": "^2.3.2",
+    "cordova-plugin-wkwebview-file-xhr": "^3.1.0",
+    "cordova-support-android-plugin": "~2.0.4",
+    "cordova.plugins.diagnostic": "^7.1.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-admobpro": {
+        "PLAY_SERVICES_VERSION": "20.4.0",
+        "ADMOB_ANDROID_APP_ID": "ca-app-pub-9249695405712287~1018608755"
+      },
+      "cordova-plugin-device": {},
+      "cordova-plugin-apprate": {},
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-idfa": {},
+      "cordova-plugin-wkwebview-file-xhr": {},
+      "cordova.plugins.diagnostic": {},
+      "cordova-admobsdk": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
+}
