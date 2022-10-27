@@ -26,12 +26,12 @@
         loadInterstitial();
     }
     function initAd() {
-        // var defaultOptions = {
-        //     position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        //     bgColor: 'black', // color name, or '#RRGGBB'
-        //     isTesting: false // set to true, to receiving test ad for testing purpose
-        // };
-        // AdMob.setOptions(defaultOptions);
+        var defaultOptions = {
+            position: AdMob.AD_POSITION.BOTTOM_CENTER,
+            bgColor: 'black', // color name, or '#RRGGBB'
+            isTesting: false // set to true, to receiving test ad for testing purpose
+        };
+        AdMob.setOptions(defaultOptions);
         registerAdEvents();
     }
     // optional, in case respond to events or handle error
