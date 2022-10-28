@@ -8,7 +8,7 @@ function showMap()
 {
     if(document.getElementById('frmMap').src == '')
     {
-        document.getElementById('frmMap').src = 'LiveMap.html';
+        document.getElementById('frmMap').src = 'LocalMap.html';
         document.getElementById('frmPlanner').setAttribute('allow', 'geolocation *;');
     }
     document.getElementById('divPlanner').style.display = 'none';
