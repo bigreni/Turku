@@ -20,7 +20,7 @@ function showMap()
 function showPlanner()
 {    
     if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
-        showAd();
+        showAd1();
     }
 
     if(document.getElementById('frmPlanner').src == '')

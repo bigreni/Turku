@@ -1,53 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
-};
-
 function refresh() {
     var iframe = document.getElementById('frmMap');
     iframe.src = iframe.src;
@@ -58,7 +8,8 @@ function showMap()
 {
     if(document.getElementById('frmMap').src == '')
     {
-        document.getElementById('frmMap').src = 'LiveMap.html';
+        document.getElementById('frmMap').src = 'LocalMap.html';
+        document.getElementById('frmPlanner').setAttribute('allow', 'geolocation *;');
     }
     document.getElementById('divPlanner').style.display = 'none';
     document.getElementById('divMap').style.display = 'block';
@@ -67,10 +18,15 @@ function showMap()
 }
 
 function showPlanner()
-{
-        if(document.getElementById('frmPlanner').src == '')
+{    
+    if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+        showAd();
+    }
+
+    if(document.getElementById('frmPlanner').src == '')
     {
-        document.getElementById('frmPlanner').src = 'https://beta.digitransit.fi/';
+        document.getElementById('frmPlanner').src = 'https://turku.digitransit.fi/';
+        document.getElementById('frmPlanner').setAttribute('allow', 'geolocation *;');
     }
     document.getElementById('divPlanner').style.display = 'block';
     document.getElementById('divMap').style.display = 'none';    

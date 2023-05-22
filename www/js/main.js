@@ -72,7 +72,7 @@
 
    function checkFirstUse()
     {
-        initApp();
+        initApp1();
         checkPermissions();
         checkTrackingPermissions();
         askRating();
@@ -162,6 +162,53 @@ function showAd()
             if(isready) 
                 AdMob.showInterstitial();
         });
+    }
+    document.getElementById("screen").style.display = 'none'; 
+}
+
+function initApp1()
+{
+    if (/(android)/i.test(navigator.userAgent)){
+    interstitial = new admob.InterstitialAd({
+        //dev
+        adUnitId: 'ca-app-pub-3940256099942544/1033173712'
+        //prod
+        //adUnitId: 'ca-app-pub-9249695405712287/2979002693'
+      });
+    }
+    else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
+        interstitial = new admob.InterstitialAd({
+            //dev
+            adUnitId: 'ca-app-pub-3940256099942544/4411468910'
+            //prod
+            //adUnitId: 'ca-app-pub-9249695405712287/1011314907'
+          });
+    }
+    registerAdEvents1();
+    interstitial.load();
+}
+
+function registerAdEvents1() {
+    // new events, with variable to differentiate: adNetwork, adType, adEvent
+    document.addEventListener('admob.ad.load', function (data) {
+        document.getElementById("screen").style.display = 'none';     
+    });
+    document.addEventListener('admob.ad.loadfail', function (data) {
+        document.getElementById("screen").style.display = 'none';     
+    });
+    document.addEventListener('admob.ad.show', function (data) { 
+        document.getElementById("screen").style.display = 'none';     
+    });
+    document.addEventListener('admob.ad.dismiss', function (data) {
+       document.getElementById("screen").style.display = 'none';     
+    });
+}
+
+function showAd1()
+{
+    document.getElementById("screen").style.display = 'block';     
+    if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+        interstitial.show();
     }
     document.getElementById("screen").style.display = 'none'; 
 }
