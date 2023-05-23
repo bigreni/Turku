@@ -51,6 +51,8 @@
     <allow-intent href="geo:*" />
 	<icon src="icon.png" />    
     <platform name="android">
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/screen-all.png" />
+        <preference name="AndroidWindowSplashScreenAnimationDuration" value="1"/>
         <preference name="ADMOB_ANDROID_APP_ID" default="ca-app-pub-9249695405712287~1018608755"/>
         <preference name="PLAY_SERVICES_VERSION" default="20.5.0"/>
         <allow-intent href="market:*" />
