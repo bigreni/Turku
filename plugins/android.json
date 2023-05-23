@@ -34,8 +34,8 @@
       "PACKAGE_NAME": "com.turku.withads"
     },
     "admob-plus-cordova": {
-      "APP_ID_ANDROID": "ca-app-pub-xxx~yyy",
-      "PLAY_SERVICES_VERSION": "20.6.0",
+      "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755",
+      "PLAY_SERVICES_VERSION": "20.5.0",
       "PACKAGE_NAME": "com.turku.withads"
     }
   },

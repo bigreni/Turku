@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "admob-plus-cordova": "^1.28.0",
     "cordova-android": "^11.0.0",
     "cordova-plugin-apprate": "^1.7.2",
     "cordova-plugin-device": "^2.1.0",
@@ -23,8 +22,8 @@
       "cordova-plugin-wkwebview-file-xhr": {},
       "cordova.plugins.diagnostic": {},
       "admob-plus-cordova": {
-        "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755",
-        "PLAY_SERVICES_VERSION": "20.5.0"
+        "PLAY_SERVICES_VERSION": "20.5.0",
+        "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755"
       }
     },
     "platforms": [
@@ -32,6 +31,7 @@
     ]
   },
   "dependencies": {
+    "admob-plus-cordova": "1.28.0",
     "cordova": "^11.1.0"
   }
 }

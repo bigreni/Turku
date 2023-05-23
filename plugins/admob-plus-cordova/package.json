@@ -1,41 +1,14 @@
 {
-  "_from": "admob-plus-cordova",
-  "_id": "admob-plus-cordova@1.28.0",
-  "_inBundle": false,
-  "_integrity": "sha512-6VRF80XN/4pkJ4ATVd0FXJZYAmrWynbgBBqmZed9dPncskaGgVd+fTr+pltHuKU9oF9zmXofJb7u17L2U0pT6Q==",
-  "_location": "/admob-plus-cordova",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "admob-plus-cordova",
-    "name": "admob-plus-cordova",
-    "escapedName": "admob-plus-cordova",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#DEV:/",
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/admob-plus-cordova/-/admob-plus-cordova-1.28.0.tgz",
-  "_shasum": "fad07146271f8d8bd90f40dc198259b92db9cf57",
-  "_spec": "admob-plus-cordova",
-  "_where": "C:\\Users\\nai\\Documents\\GitHub\\Turku",
-  "author": {
-    "name": "Ratson"
-  },
-  "bugs": {
-    "url": "https://github.com/admob-plus/admob-plus/issues"
-  },
-  "bundleDependencies": false,
-  "cordova": {
-    "id": "admob-plus-cordova",
-    "platforms": [
-      "android",
-      "ios"
-    ]
+  "name": "admob-plus-cordova",
+  "version": "1.28.0",
+  "description": "Trustable Google AdMob Cordova Plugin",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "typings": "esm/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "nx build cordova",
+    "version": "npx cordova-plus plugin version",
+    "test": "cordova-plus plugin test"
   },
   "dependencies": {
     "fast-glob": "^3.2.11",
@@ -43,8 +16,6 @@
     "plist": "^3.0.6",
     "replace-in-file": "^6.3.5"
   },
-  "deprecated": false,
-  "description": "Trustable Google AdMob Cordova Plugin",
   "devDependencies": {
     "@admob-plus-internal/rollup-config": "file:../../internal/rollup-config",
     "@tsconfig/node10": "^1.0.9",
@@ -56,6 +27,11 @@
     "rollup": "^2.78.0",
     "typescript": "~4.7.4"
   },
+  "author": "Ratson",
+  "license": "MIT",
+  "repository": "admob-plus/admob-plus",
+  "homepage": "https://admob-plus.github.io/docs/cordova",
+  "funding": "https://admob-plus.github.io/funding",
   "files": [
     "*.ts",
     "*.md",
@@ -68,9 +44,6 @@
     "www",
     "!**/*.tsbuildinfo"
   ],
-  "funding": "https://admob-plus.github.io/funding",
-  "gitHead": "e83e5c31c05dfbc06f001839ea5f1a4072325701",
-  "homepage": "https://admob-plus.github.io/docs/cordova",
   "keywords": [
     "cordova",
     "admob",
@@ -81,19 +54,12 @@
     "monetization",
     "typescript"
   ],
-  "license": "MIT",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "name": "admob-plus-cordova",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/admob-plus/admob-plus.git"
+  "cordova": {
+    "id": "admob-plus-cordova",
+    "platforms": [
+      "android",
+      "ios"
+    ]
   },
-  "scripts": {
-    "prepublishOnly": "nx build cordova",
-    "test": "cordova-plus plugin test",
-    "version": "npx cordova-plus plugin version"
-  },
-  "typings": "esm/index.d.ts",
-  "version": "1.28.0"
+  "gitHead": "e83e5c31c05dfbc06f001839ea5f1a4072325701"
 }
