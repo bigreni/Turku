@@ -2348,7 +2348,7 @@
     }
     function gtfs_init(callback) {
     function bind_loadfunc(dataset) {
-    var url = '//data.foli.fi' +
+    var url = 'https://data.foli.fi' +
     dataset.gtfspath + '/' + dataset.latest;
     hooks.gtfs_load_url = function(dataset, callback) {
     sp_load_absolute(url + '/' + dataset, function(resp) {
@@ -2361,7 +2361,7 @@
     };
     callback(dataset);
     }
-    var url = '//data.foli.fi/gtfs/';
+    var url = 'https://data.foli.fi/gtfs/';
     sp_load_absolute(url, function(resp) {
     if (resp.datasets) {
     bind_loadfunc(resp);
@@ -2400,7 +2400,7 @@
     hooks.gtfs_shape_bytrip = gtfs_shape_bytrip;
     }
     function bus_lemap_siri_bind_siri(s, hooks) {
-    var __prefix = '//data.foli.fi/siri';
+    var __prefix = 'https://data.foli.fi/siri';
     function siri_stoptimes_load(stop, callback) {
     sp_load_absolute(__prefix + '/sm/' + stop, function(resp) {
     if (resp &&
@@ -2424,7 +2424,7 @@
     if (__mutex || __suspend)
     return;
     __mutex = true;
-    sp_load_absolute('//data.foli.fi/siri/vm', function(resp) {
+    sp_load_absolute('https://data.foli.fi/siri/vm', function(resp) {
     __mutex = false; 
     var servertime = 0;
     try {
@@ -2669,7 +2669,7 @@
     }
     }
     function bus_lemap_window_bind_vehicleicon(s, hooks) {
-    var __static_prefix = '//tsjl-icons.nanona.fi/';
+    var __static_prefix = 'https://tsjl-icons.nanona.fi/';
     function __vehicleicon_static() {
     var img = ct('img');
     at(img, 'border', '0');
@@ -2909,7 +2909,7 @@
     'zoom' : 12,
     'zoomControl' : false
     });
-    var __tiles = L.tileLayer('//cdn.digitransit.fi/map/v2/hsl-map'
+    var __tiles = L.tileLayer('https://cdn.digitransit.fi/map/v2/hsl-map'
     + '/{z}/{x}/{y}.png'
     + '?digitransit-subscription-key='
     + '8a5cd63ad7984f58bb8cdefc125489ff',
@@ -3669,7 +3669,7 @@
     }
     }
     hooks.notify_set(s.l('stop_querying_sm'), 4000);
-    var url = '//data.foli.fi/siri/sm/' +  stop.stop_id;
+    var url = 'https://data.foli.fi/siri/sm/' +  stop.stop_id;
     sp_load_absolute(url, function(resp) {
     if (__stop_id !== stop.stop_id) {
     return; 
