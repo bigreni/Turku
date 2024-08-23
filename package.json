@@ -1,29 +1,31 @@
 {
   "devDependencies": {
-    "cordova-android": "^11.0.0",
-    "cordova-plugin-apprate": "^1.7.2",
-    "cordova-plugin-device": "^2.1.0",
+    "cordova-android": "^13.0.0",
+    "cordova-plugin-apprate": "^1.8.0",
+    "cordova-plugin-device": "^3.0.0",
     "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-geolocation": "^4.1.0",
-    "cordova-plugin-idfa": "^2.1.0",
-    "cordova-plugin-inappbrowser": "^5.0.0",
+    "cordova-plugin-geolocation": "^5.0.0",
+    "cordova-plugin-idfa": "^3.0.0",
+    "cordova-plugin-inappbrowser": "^6.0.0",
     "cordova-plugin-nativestorage": "^2.3.2",
-    "cordova-plugin-wkwebview-file-xhr": "^3.1.0",
+    "cordova-plugin-purchase": "^13.11.1",
+    "cordova-plugin-wkwebview-file-xhr": "^3.1.1",
     "cordova-support-android-plugin": "~2.0.4",
-    "cordova.plugins.diagnostic": "^7.1.1"
+    "cordova.plugins.diagnostic": "^7.1.4"
   },
   "cordova": {
     "plugins": {
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-wkwebview-file-xhr": {},
+      "cordova-plugin-idfa": {},
+      "cordova-plugin-geolocation": {},
       "cordova-plugin-device": {},
       "cordova-plugin-apprate": {},
-      "cordova-plugin-geolocation": {},
-      "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-idfa": {},
-      "cordova-plugin-wkwebview-file-xhr": {},
+      "cordova-plugin-purchase": {},
       "cordova.plugins.diagnostic": {},
       "admob-plus-cordova": {
-        "PLAY_SERVICES_VERSION": "20.5.0",
-        "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755"
+        "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755",
+        "APP_ID_IOS": "ca-app-pub-9249695405712287~7709539950"
       }
     },
     "platforms": [
@@ -31,7 +33,7 @@
     ]
   },
   "dependencies": {
-    "admob-plus-cordova": "1.28.0",
+    "admob-plus-cordova": "2.0.0-alpha.18",
     "cordova": "^11.1.0"
   }
 }

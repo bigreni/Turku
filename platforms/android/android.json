@@ -9,6 +9,30 @@
         "parents": {
           "/manifest/application": [
             {
+              "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:excludeFromRecents=\"true\" android:name=\"com.google.android.gms.ads.AdActivity\" android:noHistory=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-9249695405712287~1018608755\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT\" android:value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION\" android:value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING\" android:value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.flag.INTEGRATION_MANAGER\" android:value=\"webview\" />",
+              "count": 1
+            },
+            {
               "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 1,
               "mode": "merge",
@@ -20,18 +44,6 @@
                 "android:supportsRtl": "true",
                 "android:usesCleartextTraffic": "true"
               }
-            },
-            {
-              "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:excludeFromRecents=\"true\" android:name=\"com.google.android.gms.ads.AdActivity\" android:noHistory=\"true\" />",
-              "count": 1
-            },
-            {
-              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-9249695405712287~1018608755\" />",
-              "count": 1
-            },
-            {
-              "xml": "<meta-data android:name=\"com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT\" android:value=\"true\" />",
-              "count": 1
             }
           ],
           "/manifest": [
@@ -43,9 +55,8 @@
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
                 "android:name": "android.permission.ACCESS_COARSE_LOCATION",
-                "android:versionCode": "20200",
-                "android:versionName": "2.2",
-                "package": "com.turku.withads",
+                "android:versionCode": "30000",
+                "android:versionName": "3.0",
                 "xmlns:android": "http://schemas.android.com/apk/res/android"
               }
             },
@@ -57,9 +68,21 @@
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
                 "android:name": "android.permission.ACCESS_FINE_LOCATION",
-                "android:versionCode": "20200",
-                "android:versionName": "2.2",
-                "package": "com.turku.withads",
+                "android:versionCode": "30000",
+                "android:versionName": "3.0",
+                "xmlns:android": "http://schemas.android.com/apk/res/android"
+              }
+            },
+            {
+              "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
+              "count": 2,
+              "mode": "merge",
+              "id": "config.xml",
+              "oldAttrib": {
+                "android:hardwareAccelerated": "true",
+                "android:name": "com.google.android.gms.permission.AD_ID",
+                "android:versionCode": "30000",
+                "android:versionName": "3.0",
                 "xmlns:android": "http://schemas.android.com/apk/res/android"
               }
             },
@@ -70,10 +93,9 @@
               "id": "config.xml",
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
-                "android:name": "com.google.android.gms.permission.AD_ID",
-                "android:versionCode": "20200",
-                "android:versionName": "2.2",
-                "package": "com.turku.withads",
+                "android:name": "com.android.vending.BILLING",
+                "android:versionCode": "30000",
+                "android:versionName": "3.0",
                 "xmlns:android": "http://schemas.android.com/apk/res/android"
               }
             }
@@ -96,6 +118,14 @@
               "count": 1
             },
             {
+              "xml": "<uses-permission android:name=\"com.google.android.gms.permission.AD_ID\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
+              "count": 1
+            },
+            {
               "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
               "count": 1
             }
@@ -105,6 +135,10 @@
       "res/xml/config.xml": {
         "parents": {
           "/*": [
+            {
+              "xml": "<feature name=\"AdMob\"><param name=\"android-package\" value=\"admob.plus.cordova.AdMob\" /></feature>",
+              "count": 1
+            },
             {
               "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
               "count": 1
@@ -134,7 +168,7 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"AdMob\"><param name=\"android-package\" value=\"admob.plus.cordova.AdMob\" /></feature>",
+              "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"cc.fovea.PurchasePlugin\" /></feature>",
               "count": 1
             }
           ]
@@ -181,6 +215,11 @@
     }
   },
   "installed_plugins": {
+    "admob-plus-cordova": {
+      "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755",
+      "PLAY_SERVICES_VERSION": "23.0.0",
+      "PACKAGE_NAME": "com.turku.withads"
+    },
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "com.turku.withads"
     },
@@ -188,7 +227,7 @@
       "PACKAGE_NAME": "com.turku.withads"
     },
     "cordova-plugin-apprate": {
-      "PLAY_CORE_VERSION": "1.+",
+      "PLAY_REVIEW_VERSION": "2.+",
       "PACKAGE_NAME": "com.turku.withads"
     },
     "cordova-plugin-device": {
@@ -208,6 +247,9 @@
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.turku.withads"
     },
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "com.turku.withads"
+    },
     "cordova-plugin-wkwebview-file-xhr": {
       "PACKAGE_NAME": "com.turku.withads"
     },
@@ -215,15 +257,18 @@
       "ANDROIDX_VERSION": "1.0.0",
       "ANDROIDX_APPCOMPAT_VERSION": "1.3.1",
       "PACKAGE_NAME": "com.turku.withads"
-    },
-    "admob-plus-cordova": {
-      "APP_ID_ANDROID": "ca-app-pub-9249695405712287~1018608755",
-      "PLAY_SERVICES_VERSION": "20.5.0",
-      "PACKAGE_NAME": "com.turku.withads"
     }
   },
   "dependent_plugins": {},
   "modules": [
+    {
+      "id": "admob-plus-cordova.AdMob",
+      "file": "plugins/admob-plus-cordova/www/admob.js",
+      "pluginId": "admob-plus-cordova",
+      "clobbers": [
+        "admob"
+      ]
+    },
     {
       "id": "cordova-plugin-dialogs.notification",
       "file": "plugins/cordova-plugin-dialogs/www/notification.js",
@@ -318,6 +363,15 @@
       ]
     },
     {
+      "id": "cordova-plugin-purchase.CdvPurchase",
+      "file": "plugins/cordova-plugin-purchase/www/store.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "store",
+        "CdvPurchase"
+      ]
+    },
+    {
       "id": "cordova.plugins.diagnostic.Diagnostic",
       "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
       "pluginId": "cordova.plugins.diagnostic",
@@ -404,27 +458,20 @@
       "merges": [
         "cordova.plugins.diagnostic.external_storage"
       ]
-    },
-    {
-      "id": "admob-plus-cordova.AdMob",
-      "file": "plugins/admob-plus-cordova/www/admob.js",
-      "pluginId": "admob-plus-cordova",
-      "clobbers": [
-        "admob"
-      ]
     }
   ],
   "plugin_metadata": {
+    "admob-plus-cordova": "2.0.0-alpha.18",
     "cordova-plugin-dialogs": "2.0.2",
     "cordova-plugin-nativestorage": "2.3.2",
-    "cordova-plugin-apprate": "1.7.2",
-    "cordova-plugin-device": "2.1.0",
-    "cordova-plugin-geolocation": "4.1.0",
+    "cordova-plugin-apprate": "1.8.0",
+    "cordova-plugin-device": "3.0.0",
+    "cordova-plugin-geolocation": "5.0.0",
     "cordova-support-android-plugin": "2.0.4",
-    "cordova-plugin-idfa": "2.1.0",
-    "cordova-plugin-inappbrowser": "5.0.0",
-    "cordova-plugin-wkwebview-file-xhr": "3.1.0",
-    "cordova.plugins.diagnostic": "7.1.1",
-    "admob-plus-cordova": "1.28.0"
+    "cordova-plugin-idfa": "3.0.0",
+    "cordova-plugin-inappbrowser": "6.0.0",
+    "cordova-plugin-purchase": "13.11.1",
+    "cordova-plugin-wkwebview-file-xhr": "3.1.1",
+    "cordova.plugins.diagnostic": "7.1.4"
   }
 }

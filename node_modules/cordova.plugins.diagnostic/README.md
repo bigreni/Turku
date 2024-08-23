@@ -651,6 +651,7 @@ Platforms: Android
 
 Checks if the device data roaming setting is enabled.
 Returns true if data roaming is enabled.
+Not available on Android 12L / API 32+
 
     cordova.plugins.diagnostic.isDataRoamingEnabled(successCallback, errorCallback);
 
@@ -2193,13 +2194,11 @@ Notes:
 - On Android & iOS this returns true if the device has a camera AND the application is authorized to use it.
 
 Notes for Android:
-- On Android by default this checks run-time permission for both `READ_EXTERNAL_STORAGE` and `CAMERA` because [cordova-plugin-camera@2.2+](https://github.com/apache/cordova-plugin-camera) requires both of these permissions.
-- The call signature `cordova.plugins.diagnostic.isCameraAvailable(successCallback, errorCallback, externalStorage)` is also supported for benefit of the [ionic-native Promise API wrapper](https://github.com/driftyco/ionic-native/blob/master/src/%40ionic-native/plugins/diagnostic/index.ts).
+- By default this also checks run-time storage permissions in addition to `CAMERA` permission because [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) requires both of these permission sets.
+  - On Android 13+, storage permissions are `READ_MEDIA_IMAGES` and `READ_MEDIA_VIDEO`. On Android 12 and below, storage permissions are `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE`.
 
 ```
-cordova.plugins.diagnostic.isCameraAvailable(params);
-cordova.plugins.diagnostic.isCameraAvailable(successCallback, errorCallback, params)
-cordova.plugins.diagnostic.isCameraAvailable(successCallback, errorCallback, externalStorage)
+cordova.plugins.diagnostic.isCameraAvailable(successCallback, errorCallback, storage)
 ```
 
 #### Parameters
@@ -2208,31 +2207,10 @@ cordova.plugins.diagnostic.isCameraAvailable(successCallback, errorCallback, ext
 The function is passed a single boolean parameter which is TRUE if camera is present and authorized for use.
     - {Function} errorCallback -  The callback which will be called when operation encounters an error.
 The function is passed a single string parameter containing the error message.
-    - {Boolean} externalStorage - (Android only) If true, checks permission for `READ_EXTERNAL_STORAGE` in addition to `CAMERA` run-time permission.
-Defaults to true.
+  - {Boolean} storage - (Android only) If true, requests storage permissions in addition to `CAMERA` run-time permission. Defaults to true.
 
 
 #### Example usage
-
-    cordova.plugins.diagnostic.isCameraAvailable({
-        successCallback: function(available){
-            console.log("Camera is " + (available ? "available" : "not available"));
-        },
-        errorCallback: function(error){
-            console.error("The following error occurred: "+error);
-        },
-        externalStorage: false
-    });
-
-    cordova.plugins.diagnostic.isCameraAvailable(
-        function(available){
-            console.log("Camera is " + (available ? "available" : "not available"));
-        }, function(error){
-            console.error("The following error occurred: "+error);
-        }, {
-            externalStorage: false
-        }
-    );
 
     cordova.plugins.diagnostic.isCameraAvailable(
         function(available){
@@ -2250,13 +2228,11 @@ Checks if the application is authorized to use the camera.
 
 Notes for Android:
 - This is intended for Android 6 / API 23 and above. Calling on Android 5.1 / API 22 and below will always return TRUE as permissions are already granted at installation time.
-- By default this checks run-time permission for both `READ_EXTERNAL_STORAGE` and `CAMERA` because [cordova-plugin-camera@2.2+](https://github.com/apache/cordova-plugin-camera) requires both of these permissions.
-- The call signature `cordova.plugins.diagnostic.isCameraAuthorized(successCallback, errorCallback, externalStorage)` is also supported for benefit of the [ionic-native Promise API wrapper](https://github.com/driftyco/ionic-native/blob/master/src/%40ionic-native/plugins/diagnostic/index.ts).
+- By default this also checks run-time storage permissions in addition to `CAMERA` permission because [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) requires both of these permission sets.
+  - On Android 13+, storage permissions are `READ_MEDIA_IMAGES` and `READ_MEDIA_VIDEO`. On Android 12 and below, storage permissions are `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE`.
 
 ```
-cordova.plugins.diagnostic.isCameraAuthorized(params);
-cordova.plugins.diagnostic.isCameraAuthorized(successCallback, errorCallback, params)
-cordova.plugins.diagnostic.isCameraAuthorized(successCallback, errorCallback, externalStorage)
+cordova.plugins.diagnostic.isCameraAuthorized(successCallback, errorCallback, storage)
 ```
 
 #### Parameters
@@ -2265,30 +2241,9 @@ cordova.plugins.diagnostic.isCameraAuthorized(successCallback, errorCallback, ex
 The function is passed a single boolean parameter which is TRUE if camera is authorized for use.
     - {Function} errorCallback -  The callback which will be called when operation encounters an error.
 The function is passed a single string parameter containing the error message.
-    - {Boolean} externalStorage - (Android only) If true, checks permission for `READ_EXTERNAL_STORAGE` in addition to `CAMERA` run-time permission.
-Defaults to true.
+  - {Boolean} storage - (Android only) If true, requests storage permissions in addition to `CAMERA` run-time permission. Defaults to true.
 
 #### Example usage
-
-    cordova.plugins.diagnostic.isCameraAuthorized({
-        successCallback: function(authorized){
-            console.log("App is " + (authorized ? "authorized" : "denied") + " access to the camera");
-        },
-        errorCallback: function(error){
-            console.error("The following error occurred: "+error);
-        },
-        externalStorage: false
-    });
-
-    cordova.plugins.diagnostic.isCameraAuthorized(
-        function(authorized){
-            console.log("App is " + (authorized ? "authorized" : "denied") + " access to the camera");
-        }, function(error){
-            console.error("The following error occurred: "+error);
-        }, {
-            externalStorage: false
-        }
-    );
 
     cordova.plugins.diagnostic.isCameraAuthorized(
         function(authorized){
@@ -2306,13 +2261,11 @@ Returns the camera authorization status for the application.
 
 Notes for Android:
 - This is intended for Android 6 / API 23 and above. Calling on Android 5.1 / API 22 and below will always return GRANTED status as permissions are already granted at installation time.
-- By default this checks run-time permission for both `READ_EXTERNAL_STORAGE` and `CAMERA` because [cordova-plugin-camera@2.2+](https://github.com/apache/cordova-plugin-camera) requires both of these permissions.
-- The call signature `cordova.plugins.diagnostic.getCameraAuthorizationStatus(successCallback, errorCallback, externalStorage)` is also supported for benefit of the [ionic-native Promise API wrapper](https://github.com/driftyco/ionic-native/blob/master/src/%40ionic-native/plugins/diagnostic/index.ts).
+- By default this also checks run-time storage permissions in addition to `CAMERA` permission because [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) requires both of these permission sets.
+  - On Android 13+, storage permissions are `READ_MEDIA_IMAGES` and `READ_MEDIA_VIDEO`. On Android 12 and below, storage permissions are `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE`.
 
 ```
-cordova.plugins.diagnostic.getCameraAuthorizationStatus(params);
-cordova.plugins.diagnostic.getCameraAuthorizationStatus(successCallback, errorCallback, params)
-cordova.plugins.diagnostic.getCameraAuthorizationStatus(successCallback, errorCallback, externalStorage)
+cordova.plugins.diagnostic.getCameraAuthorizationStatus(successCallback, errorCallback, storage)
 ```
 
 #### Parameters
@@ -2321,35 +2274,10 @@ cordova.plugins.diagnostic.getCameraAuthorizationStatus(successCallback, errorCa
 The function is passed a single string parameter which indicates the authorization status as a [permissionStatus constant](#permissionstatus-constants).
     - {Function} errorCallback -  The callback which will be called when operation encounters an error.
 The function is passed a single string parameter containing the error message.
-    - {Boolean} externalStorage - (Android only) If true, checks permission for `READ_EXTERNAL_STORAGE` in addition to `CAMERA` run-time permission.
-Defaults to true.
+  - {Boolean} storage - (Android only) If true, requests storage permissions in addition to `CAMERA` run-time permission. Defaults to true.
 
 
 #### Example usage
-
-    cordova.plugins.diagnostic.getCameraAuthorizationStatus({
-        successCallback: function(status){
-            if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
-                console.log("Camera use is authorized");
-            }
-        },
-        errorCallback: function(error){
-            console.error("The following error occurred: "+error);
-        },
-        externalStorage: false
-    });
-
-    cordova.plugins.diagnostic.getCameraAuthorizationStatus(
-        function(status){
-            if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
-                console.log("Camera use is authorized");
-            }
-        }, function(error){
-            console.error("The following error occurred: "+error);
-        }, {
-            externalStorage: false
-        }
-    );
 
     cordova.plugins.diagnostic.getCameraAuthorizationStatus(
         function(status){
@@ -2375,48 +2303,24 @@ this plugin provides a default message, but you should override this with your s
 
 Notes for Android:
 - This is intended for Android 6 / API 23 and above. Calling on Android 5.1 / API 22 and below will have no effect as the permissions are already granted at installation time.
-- By default this requests run-time permission for both `READ_EXTERNAL_STORAGE` and `CAMERA` because [cordova-plugin-camera@2.2+](https://github.com/apache/cordova-plugin-camera) requires both of these permissions.
+- By default this requests run-time storage permissions in addition to `CAMERA` permission because [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) requires both of these permission sets.
+  - On Android 13+, storage permissions are `READ_MEDIA_IMAGES` and `READ_MEDIA_VIDEO`. On Android 12 and below, storage permissions are `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE`.
 - Requested run-time permissions which must be added to `AndroidManifest.xml` - see [Android camera permissions](#android-camera-permissions).
-- The call signature `cordova.plugins.diagnostic.requestCameraAuthorization(successCallback, errorCallback, externalStorage)` is also supported for benefit of the [ionic-native Promise API wrapper](https://github.com/driftyco/ionic-native/blob/master/src/%40ionic-native/plugins/diagnostic/index.ts).
 
 ```
-cordova.plugins.diagnostic.requestCameraAuthorization(params);
-cordova.plugins.diagnostic.requestCameraAuthorization(successCallback, errorCallback, params)
-cordova.plugins.diagnostic.requestCameraAuthorization(successCallback, errorCallback, externalStorage)
+cordova.plugins.diagnostic.requestCameraAuthorization(successCallback, errorCallback, storage)
 ```
 
 #### Parameters
 
 - {Object} params - (optional) parameters:
     - {Function} successCallback -  The callback which will be called when operation is successful.
-The function is passed a single string parameter indicating whether access to the camera was granted or denied:
-`cordova.plugins.diagnostic.permissionStatus.GRANTED` or `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+The function is passed a single string parameter indicating the resulting permission status.
     - {Function} errorCallback -  The callback which will be called when operation encounters an error.
 The function is passed a single string parameter containing the error message.
-    - {Boolean} externalStorage - (Android only) If true, requests permission for `READ_EXTERNAL_STORAGE` in addition to `CAMERA` run-time permission.
-    Defaults to true.
+    - {Boolean} storage - (Android only) If true, requests storage permissions in addition to `CAMERA` run-time permission. Defaults to true.
 
 #### Example usage
-
-    cordova.plugins.diagnostic.requestCameraAuthorization({
-        successCallback: function(status){
-            console.log("Authorization request for camera use was " + (status == cordova.plugins.diagnostic.permissionStatus.GRANTED ? "granted" : "denied"));
-        },
-        errorCallback: function(error){
-            console.error(error);
-        },
-        externalStorage: false
-    });
-
-    cordova.plugins.diagnostic.requestCameraAuthorization(
-        function(status){
-            console.log("Authorization request for camera use was " + (status == cordova.plugins.diagnostic.permissionStatus.GRANTED ? "granted" : "denied"));
-        }, function(error){
-            console.error("The following error occurred: "+error);
-        }, {
-            externalStorage: false
-        }
-    );
 
     cordova.plugins.diagnostic.requestCameraAuthorization(
         function(status){
@@ -3764,13 +3668,97 @@ The plugin defines all [dangerous permissions](http://developer.android.com/guid
 - `cordova.plugins.diagnostic.permission.WRITE_CONTACTS`
 - `cordova.plugins.diagnostic.permission.WRITE_EXTERNAL_STORAGE`
 
+
+##### Android 11+ runtime permissions
+Android 11 introduced a new option for the user when granting runtime permissions: "Only this time"/"Ask every time".
+This allows the user to temporarily grant a permission only for the current app session: the requested permission will be available to the app during the current session but when the app is restarted, permission will be revoked and the app will have to request it again.
+This causes a problem for this plugin because it is unable to detect that the permission has been silently revoked by Android in the new app session.
+
+When runtime permissions were introduced in Android 6.0, there was already a deficiency in the Android permissions model: the Android SDK provides no way to differentiate between a permission that has not been requested yet (`NOT_REQUESTED`) or has been permanently denied (`DENIED_ALWAYS`) - they have the same programmatic state. Therefore this plugin uses local persistent storage to flag when a given permission has been requested and granted via the plugin. So if Android indicates `NOT_REQUESTED`/`DENIED_ALWAYS`, the plugin uses the state of the persistent flag to determine if that permission has been requested before and therefore can differentiate between `NOT_REQUESTED` and `DENIED_ALWAYS`.
+
+This worked fine up until Android 10, however the "Only this time" option added in Android 11 causes a problem:
+There's no way for the plugin to tell if the user pressed "Only this time" or "Allow always" in the permissions dialog because the programmatic outcome in Android is the same: the permission state is `GRANTED`.
+Therefore in both cases, the plugin flags this permission as having been requested.
+But if the user pressed "Only this time", when the app is restarted the permission is silently revoked by Android and so when the native Android state indicates `NOT_REQUESTED`/`DENIED_ALWAYS`, the plugin determines that since the flag has been set for that permission, the state must be `DENIED_ALWAYS`.
+
+There is no programmatic solution that the plugin can implement to solve this - it is a deficiency in the Android permission states model.
+There is however a workaround which is to assume that even if the reported permission status is `DENIED_ALWAYS`, the permission *may* still be requestable.
+
+Here's a short example of how to do this using the `CAMERA` permission:
+
+```javascript
+
+let diagnostic, deviceOS;
+let cameraDeniedAlwaysAfterRequesting = false;
+
+function onDeviceReady(){
+    diagnostic = cordova.plugins.diagnostic; // alias to shorter namespace
+    diagnostic.getDeviceOSVersion(function(osDetails){
+        deviceOS = osDetails;
+        checkCameraPermission();
+    })
+}
+
+function checkCameraPermission(){
+    diagnostic.getPermissionAuthorizationStatus(function(status){
+
+        // If running on Android 11+ and status is DENIED_ALWAYS, assume it can still be requested (i.e. user selected "Only once" in previous app session)
+        if(deviceOS.apiLevel >= 30 && status === diagnostic.permissionStatus.DENIED_ALWAYS && !cameraDeniedAlwaysAfterRequesting){
+            status = diagnostic.permissionStatus.DENIED_ONCE;
+        }
+
+        switch(status){
+            case diagnostic.permissionStatus.GRANTED:
+                console.log("Camera permission is allowed")
+                break;
+            case diagnostic.permissionStatus.NOT_REQUESTED:
+                console.log("Camera permission not requested yet - requesting...")
+                requestCameraPermission();
+                break;
+            case diagnostic.permissionStatus.DENIED_ONCE:
+                console.log("Camera permission denied but can still request - requesting...")
+                requestCameraPermission();
+                break;
+            case diagnostic.permissionStatus.DENIED_ONCE:
+                console.log("Camera permission permanently denied - can't request");
+                break;
+        }
+    }, console.error, diagnostic.permission.CAMERA)
+};
+
+function requestCameraPermission(){
+    diagnostic.requestRuntimePermission(function(status){
+
+        // If result is DENIED_ALWAYS after requesting then it really is permanently denied
+        if(status === diagnostic.permissionStatus.DENIED_ALWAYS){
+            cameraDeniedAlwaysAfterRequesting = true;
+        }
+
+        // Re-check permission
+        checkCameraPermission();
+
+    }, console.error, diagnostic.permission.CAMERA);
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+```
+
+
+
 ##### Runtime permissions example project
 
 While the [cordova-diagnostic-plugin-example](https://github.com/dpa99c/cordova-diagnostic-plugin-example) illustrates use of runtime permissions in the context of requesting location and camera access, the [cordova-diagnostic-plugin-android-runtime-example](https://github.com/dpa99c/cordova-diagnostic-plugin-android-runtime-example) project explicitly illustrates use of Android runtime permissions with this plugin.
 
 ##### Android Camera permissions
 
-Note that the Android variant of [`requestCameraAuthorization()`](#requestcameraauthorization) requests the `READ_EXTERNAL_STORAGE` permission, in addition to the `CAMERA` permission.
+Note that the Android variant of [`requestCameraAuthorization()`](#requestcameraauthorization), in addition to the `CAMERA` permission, by default also requests storage permissions.
+This is because the Android camera API requires access to the device's storage to store captured images and videos.
+
+On Android <=12, this requires the `WRITE_EXTERNAL_STORAGE` and `READ_EXTERNAL_STORAGE` permissions.
+On Android >12, this requires the `READ_MEDIA_IMAGES` and `READ_MEDIA_VIDEO` permissions.
+
+the `READ_EXTERNAL_STORAGE` permission.
 This is because the [cordova-plugin-camera@2.2+](https://github.com/apache/cordova-plugin-camera) requires both of these permissions.
 
 So to use this method in conjunction with the Cordova camera plugin, make sure you are using the most recent `cordova-plugin-camera` release: v2.2.0 or above.

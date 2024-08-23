@@ -143,6 +143,55 @@ public class Diagnostic extends CordovaPlugin{
         permissionsMap = Collections.unmodifiableMap(_permissionsMap);
     }
 
+    /**
+     * Map of minimum build SDK version supported by defined permissions
+     */
+    protected static final Map<String, Integer> minSdkPermissionMap;
+    static {
+        Map<String, Integer> _permissionsMap = new HashMap <String, Integer>();
+
+        // API 26+
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "ANSWER_PHONE_CALLS", 26);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "READ_PHONE_NUMBERS", 26);
+
+        // API 28+
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "ACCEPT_HANDOVER", 28);
+
+        // API 29+
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "ACCESS_BACKGROUND_LOCATION", 29);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "ACCESS_MEDIA_LOCATION", 29);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "ACTIVITY_RECOGNITION", 29);
+
+        // API 31+
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "BLUETOOTH_ADVERTISE", 31);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "BLUETOOTH_CONNECT",   31);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "BLUETOOTH_SCAN",    31);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "UWB_RANGING",      31);
+
+        // API 33+
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "BODY_SENSORS_BACKGROUND", 33);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "NEARBY_WIFI_DEVICES", 33);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "POST_NOTIFICATIONS", 33);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "READ_MEDIA_AUDIO", 33);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "READ_MEDIA_IMAGES", 33);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "READ_MEDIA_VIDEO", 33);
+
+        minSdkPermissionMap = Collections.unmodifiableMap(_permissionsMap);
+    }
+
+    /**
+     * Map of maximum build SDK version supported by defined permissions
+     */
+    protected static final Map<String, Integer> maxSdkPermissionMap;
+    static {
+        Map<String, Integer> _permissionsMap = new HashMap <String, Integer>();
+
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "READ_EXTERNAL_STORAGE", 32);
+        Diagnostic.addBiDirMapEntry(_permissionsMap, "WRITE_EXTERNAL_STORAGE", 29);
+
+        maxSdkPermissionMap = Collections.unmodifiableMap(_permissionsMap);
+    }
+
 
     /*
      * Map of permission request code to callback context
@@ -266,6 +315,11 @@ public class Diagnostic extends CordovaPlugin{
                 switchToWirelessSettings();
                 callbackContext.success();
             } else if(action.equals("isDataRoamingEnabled")) {
+                if(Build.VERSION.SDK_INT <= 32) { // Android 12L
+                    callbackContext.success(isDataRoamingEnabled() ? 1 : 0);
+                } else {
+                    callbackContext.error("Data roaming setting not available on Android 12L / API32+");
+                }
                 callbackContext.success(isDataRoamingEnabled() ? 1 : 0);
             } else if(action.equals("getPermissionAuthorizationStatus")) {
                 this.getPermissionAuthorizationStatus(args);
@@ -315,13 +369,7 @@ public class Diagnostic extends CordovaPlugin{
 
 
     public boolean isDataRoamingEnabled() throws Exception {
-        boolean result;
-        if (Build.VERSION.SDK_INT < 17) {
-            result = Settings.System.getInt(this.cordova.getActivity().getContentResolver(), Settings.Global.DATA_ROAMING, 0) == 1;
-        }else{
-            result = Settings.Global.getInt(this.cordova.getActivity().getContentResolver(), Settings.Global.DATA_ROAMING, 0) == 1;
-        }
-        return result;
+        return Settings.Global.getInt(this.cordova.getActivity().getContentResolver(), Settings.Global.DATA_ROAMING, 0) == 1;
     }
 
     public void switchToAppSettings() {
@@ -554,18 +602,10 @@ public class Diagnostic extends CordovaPlugin{
             if(!permissionsMap.containsKey(permission)){
                 throw new Exception("Permission name '"+permission+"' is not a valid permission");
             }
-            if(Build.VERSION.SDK_INT < 29 && permission.equals("ACCESS_BACKGROUND_LOCATION")){
-                // This version of Android doesn't support background location permission so check for standard coarse location permission
-                permission = "ACCESS_COARSE_LOCATION";
-            }
-            if(Build.VERSION.SDK_INT < 29 && permission.equals("ACTIVITY_RECOGNITION")){
-                // This version of Android doesn't support activity recognition permission so check for body sensors permission
-                permission = "BODY_SENSORS";
-            }
             String androidPermission = permissionsMap.get(permission);
             Log.v(TAG, "Get authorisation status for "+androidPermission);
             boolean granted = hasRuntimePermission(androidPermission);
-            if(granted){
+            if(granted || isPermissionImplicitlyGranted(permission)){
                 statuses.put(permission, Diagnostic.STATUS_GRANTED);
             }else{
                 boolean showRationale = shouldShowRequestPermissionRationale(this.cordova.getActivity(), androidPermission);
@@ -588,13 +628,27 @@ public class Diagnostic extends CordovaPlugin{
         JSONArray permissionsToRequest = new JSONArray();
         for(int i = 0; i<currentPermissionsStatuses.names().length(); i++){
             String permission = currentPermissionsStatuses.names().getString(i);
+
+            if(!permissionsMap.containsKey(permission)){
+                throw new Exception("Permission name '"+permission+"' is not a supported permission");
+            }
+
             boolean granted = currentPermissionsStatuses.getString(permission) == Diagnostic.STATUS_GRANTED;
-            if(granted){
+            if(granted || isPermissionImplicitlyGranted(permission)){
                 Log.d(TAG, "Permission already granted for "+permission);
                 JSONObject requestStatuses = permissionStatuses.get(String.valueOf(requestId));
                 requestStatuses.put(permission, Diagnostic.STATUS_GRANTED);
                 permissionStatuses.put(String.valueOf(requestId), requestStatuses);
             }else{
+
+                if(minSdkPermissionMap.containsKey(permission) && getDeviceRuntimeSdkVersion() < minSdkPermissionMap.get(permission)){
+                    throw new Exception("Permission "+permission+" not supported for build SDK version "+getDeviceRuntimeSdkVersion());
+                }
+
+                if(maxSdkPermissionMap.containsKey(permission) && getDeviceRuntimeSdkVersion() > maxSdkPermissionMap.get(permission)){
+                    throw new Exception("Permission "+permission+" not supported for build SDK version "+getDeviceRuntimeSdkVersion());
+                }
+
                 String androidPermission = permissionsMap.get(permission);
                 Log.d(TAG, "Requesting permission for "+androidPermission);
                 permissionsToRequest.put(androidPermission);
@@ -608,6 +662,22 @@ public class Diagnostic extends CordovaPlugin{
             Log.d(TAG, "No permissions to request: returning result");
             sendRuntimeRequestResult(requestId);
         }
+    }
+
+    protected boolean isPermissionImplicitlyGranted(String permission) throws Exception{
+        boolean isImplicitlyGranted = false;
+        int buildTargetSdkVersion = getBuildTargetSdkVersion();
+        int deviceRuntimeSdkVersion = getDeviceRuntimeSdkVersion();
+
+        if(minSdkPermissionMap.containsKey(permission)){
+            int minSDKForPermission = minSdkPermissionMap.get(permission);
+            if(buildTargetSdkVersion >= minSDKForPermission && deviceRuntimeSdkVersion < minSDKForPermission) {
+                isImplicitlyGranted = true;
+                Log.v(TAG, "Permission "+permission+" is implicitly granted because while it's defined in build SDK version "+buildTargetSdkVersion+", the device runtime SDK version "+deviceRuntimeSdkVersion+" does not support it.");
+            }
+        }
+
+        return isImplicitlyGranted;
     }
 
     protected void sendRuntimeRequestResult(int requestId){
@@ -654,6 +724,17 @@ public class Diagnostic extends CordovaPlugin{
         String[] arr=new String[array.length()];
         for(int i=0; i<arr.length; i++) {
             arr[i]=array.optString(i);
+        }
+        return arr;
+    }
+
+    protected JSONArray stringArrayToJsonArray(String[] array) throws JSONException{
+        if(array==null)
+            return null;
+
+        JSONArray arr = new JSONArray();
+        for(int i=0; i<array.length; i++) {
+            arr.put(i, array[i]);
         }
         return arr;
     }
@@ -853,23 +934,20 @@ public class Diagnostic extends CordovaPlugin{
     public JSONObject getDeviceOSVersion() throws Exception{
         JSONObject details = new JSONObject();
         details.put("version", Build.VERSION.RELEASE);
-        details.put("apiLevel", Build.VERSION.SDK_INT);
-        details.put("apiName", getNameForApiLevel(Build.VERSION.SDK_INT));
+        int buildVersion = getDeviceRuntimeSdkVersion();
+        details.put("apiLevel", buildVersion);
+        details.put("apiName", getNameForApiLevel(buildVersion));
         return details;
+    }
+
+    protected int getDeviceRuntimeSdkVersion() {
+        return Build.VERSION.SDK_INT;
     }
 
     public JSONObject getBuildOSVersion() throws Exception{
         JSONObject details = new JSONObject();
-        int targetVersion = 0;
-        int minVersion = 0;
-        Activity activity = instance.cordova.getActivity();
-        ApplicationInfo applicationInfo = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), 0);
-        if (applicationInfo != null) {
-            targetVersion = applicationInfo.targetSdkVersion;
-            if(Build.VERSION.SDK_INT >= 24){
-                minVersion = applicationInfo.minSdkVersion;
-            }
-        }
+        int targetVersion = getBuildTargetSdkVersion();
+        int minVersion = getBuildMinimumSdkVersion();
 
         details.put("targetApiLevel", targetVersion);
         details.put("targetApiName", getNameForApiLevel(targetVersion));
@@ -877,6 +955,29 @@ public class Diagnostic extends CordovaPlugin{
         details.put("minApiName", getNameForApiLevel(minVersion));
         return details;
     }
+
+    protected int getBuildTargetSdkVersion() throws Exception{
+        int targetVersion = 0;
+        Activity activity = instance.cordova.getActivity();
+        ApplicationInfo applicationInfo = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), 0);
+        if (applicationInfo != null) {
+            targetVersion = applicationInfo.targetSdkVersion;
+        }
+        return targetVersion;
+    }
+
+    protected int getBuildMinimumSdkVersion() throws Exception{
+        int minVersion = 0;
+        Activity activity = instance.cordova.getActivity();
+        ApplicationInfo applicationInfo = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), 0);
+        if (applicationInfo != null) {
+            if(Build.VERSION.SDK_INT >= 24){
+                minVersion = applicationInfo.minSdkVersion;
+            }
+        }
+        return minVersion;
+    }
+
 
     // https://stackoverflow.com/a/55946200/777265
     protected String getNameForApiLevel(int apiLevel) throws Exception{
@@ -888,6 +989,15 @@ public class Diagnostic extends CordovaPlugin{
             }
         }
         return codeName;
+    }
+
+    protected String[] concatStrings(String[] A, String[] B) {
+        int aLen = A.length;
+        int bLen = B.length;
+        String[] C= new String[aLen+bLen];
+        System.arraycopy(A, 0, C, 0, aLen);
+        System.arraycopy(B, 0, C, aLen, bLen);
+        return C;
     }
 
     /************
