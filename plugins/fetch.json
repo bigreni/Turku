@@ -81,14 +81,6 @@
       "PLAY_REVIEW_VERSION": "2.+"
     }
   },
-  "cordova-plugin-purchase": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-purchase"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova.plugins.diagnostic": {
     "source": {
       "type": "registry",
@@ -108,5 +100,13 @@
       "APP_ID_IOS": "ca-app-pub-9249695405712287~7709539950",
       "PLAY_SERVICES_VERSION": "23.0.0"
     }
+  },
+  "cordova-plugin-purchase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-purchase"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

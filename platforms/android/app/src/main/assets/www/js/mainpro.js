@@ -10,17 +10,17 @@
         if (/(android)/i.test(navigator.userAgent)){
             interstitial = new admob.InterstitialAd({
                 //dev
-                adUnitId: 'ca-app-pub-3940256099942544/1033173712'
+                //adUnitId: 'ca-app-pub-3940256099942544/1033173712'
                 //prod
-                //adUnitId: 'ca-app-pub-9249695405712287/2495341951'
+                adUnitId: 'ca-app-pub-9249695405712287/2495341951'
               });
             }
             else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent) || (navigator.userAgent.includes("Mac") && "ontouchend" in document)) {
                 interstitial = new admob.InterstitialAd({
                     //dev
-                    adUnitId: 'ca-app-pub-3940256099942544/4411468910'
+                    //adUnitId: 'ca-app-pub-3940256099942544/4411468910'
                     //prod
-                    //adUnitId: 'ca-app-pub-9249695405712287/8955912090'
+                    adUnitId: 'ca-app-pub-9249695405712287/8955912090'
                   });
             }
             registerAdEvents();
@@ -66,7 +66,7 @@ function askRating()
             ios: 'AppStoreReview',
             android: 'InAppBrowser'
             },
-    useLanguage:  'en',
+    useLanguage:  'fi',
     usesUntilPrompt: 10,
     promptAgainForEachNewVersion: true,
     storeAppURL: {

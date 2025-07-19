@@ -2909,10 +2909,10 @@
     'zoom' : 12,
     'zoomControl' : false
     });
-    var __tiles = L.tileLayer('https://cdn.digitransit.fi/map/v2/hsl-map'
+    var __tiles = L.tileLayer('https://cdn.digitransit.fi/map/v3/hsl-map'
     + '/{z}/{x}/{y}.png'
     + '?digitransit-subscription-key='
-    + '8a5cd63ad7984f58bb8cdefc125489ff',
+    + '6eb09711c94f4ad4b036650affccbef3',
     {
     'tileSize' : 512,
     'zoomOffset' : -1,
